@@ -56,7 +56,10 @@ namespace Game.Dialogue.Editor
             }
             else
             {
-                EditorGUILayout.LabelField(selectedDialogue.name);
+                foreach(var node in selectedDialogue.GetAllNodes())
+                {
+                    node.text = EditorGUILayout.TextField(node.text);
+                }
             }
         }
     }
