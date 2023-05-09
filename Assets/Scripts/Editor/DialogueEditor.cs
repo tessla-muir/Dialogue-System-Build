@@ -9,6 +9,7 @@ namespace Game.Dialogue.Editor
     public class DialogueEditor : EditorWindow
     {
         Dialogue selectedDialogue = null;
+        GUIStyle nodeStyle;
 
         // Creates dialogue window
         [MenuItem("Window/Dialogue Editor")]
@@ -37,6 +38,13 @@ namespace Game.Dialogue.Editor
         // Called when an object becomes enabled and active
         private void OnEnable() {
             Selection.selectionChanged += OnSelectionChanged;
+
+            // Style nodes
+            nodeStyle = new GUIStyle();
+            nodeStyle.normal.background = EditorGUIUtility.Load("node2") as Texture2D;
+            nodeStyle.normal.textColor = Color.white;
+            nodeStyle.padding = new RectOffset(20, 20, 20, 20);
+            nodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
 
         private void OnSelectionChanged()
@@ -58,9 +66,29 @@ namespace Game.Dialogue.Editor
             {
                 foreach(var node in selectedDialogue.GetAllNodes())
                 {
-                    node.text = EditorGUILayout.TextField(node.text);
+                    OnGUINode(node);
                 }
             }
+        }
+
+        private void OnGUINode(DialogueNode node)
+        {
+            GUILayout.BeginArea(node.position, nodeStyle);
+            EditorGUI.BeginChangeCheck();
+
+            EditorGUILayout.LabelField("Node:", EditorStyles.whiteLabel);
+            string newText = EditorGUILayout.TextField(node.text);
+            string newUniqueID = EditorGUILayout.TextField(node.uniqueID);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(selectedDialogue, "Update Dialogue Text");
+
+                node.text = newText;
+                node.uniqueID = newUniqueID;
+            }
+
+            GUILayout.EndArea();
         }
     }
 }
