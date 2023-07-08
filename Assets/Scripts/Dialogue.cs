@@ -6,20 +6,11 @@ using UnityEngine;
 namespace Game.Dialogue
 {
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue", order = 0)]
-    public class Dialogue : ScriptableObject
+    public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] List<DialogueNode> nodes = new List<DialogueNode>();
         Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
 
-#if UNITY_EDITOR 
-        private void Awake()
-        {
-            if (nodes.Count == 0)
-            {
-                CreateNode(null);
-            }
-        }
-#endif
         private void OnValidate()
         {
             nodeLookup.Clear(); // Start with a clean state
@@ -86,6 +77,30 @@ namespace Game.Dialogue
             {
                 node.children.Remove(nodeToClean.name);
             }
+        }
+
+        public void OnBeforeSerialize()
+        {
+            if (nodes.Count == 0)
+            {
+                CreateNode(null);
+            }
+
+            if (AssetDatabase.GetAssetPath(this) != "")
+            {
+                foreach (DialogueNode node in GetAllNodes())
+                {
+                    if (AssetDatabase.GetAssetPath(node) == "")
+                    {
+                        AssetDatabase.AddObjectToAsset(node, this);
+                    }
+                }
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+            // Just needed for interface
         }
     }
 }
