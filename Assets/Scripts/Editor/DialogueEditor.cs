@@ -19,6 +19,8 @@ namespace Game.Dialogue.Editor
 
         Vector2 scrollPosition; // Keep position through serialization
         [System.NonSerialized] Vector2 windowSize = new Vector2(600, 600);
+        [System.NonSerialized] bool draggingCanvas = false;
+        [System.NonSerialized] Vector2 draggingCanvasOffset;
 
         // Creates dialogue window
         [MenuItem("Window/Dialogue Editor")]
@@ -199,24 +201,41 @@ namespace Game.Dialogue.Editor
                 draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
                 if (draggingNode != null)
                 {
+                    // Dragging Node
                     draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
+                }
+                else
+                {
+                    // Dragging Canvas
+                    draggingCanvas = true;
+                    draggingCanvasOffset = Event.current.mousePosition + scrollPosition;
                 }
             }
             else if (Event.current.type == EventType.MouseDrag && draggingNode != null)
             {
                 Undo.RecordObject(selectedDialogue, "Move Dialogue Node");
                 draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+
+                GUI.changed = true;
+            }
+            else if (Event.current.type == EventType.MouseDrag && draggingCanvas)
+            {
+                scrollPosition = draggingCanvasOffset - Event.current.mousePosition;
                 GUI.changed = true;
             }
             else if (Event.current.type == EventType.MouseDown && draggingNode != null)
             {
                 draggingNode = null;
             }
+            else if (Event.current.type == EventType.MouseUp && draggingCanvas)
+            {
+                draggingCanvas = false;
+            }
 
              AlterWindowSize();
         }
 
-        // Updates window size based on current nodes
+        // Updates window size as needed
         private void AlterWindowSize()
         {
             Vector2 maxSize = new Vector2(0, 0);
