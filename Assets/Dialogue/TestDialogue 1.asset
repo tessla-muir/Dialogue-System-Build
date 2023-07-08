@@ -16,3 +16,9 @@ MonoBehaviour:
   - uniqueID: 
     text: What?
     children: []
+    rect:
+      serializedVersion: 2
+      x: 102.666664
+      y: 199.66667
+      width: 200
+      height: 100

@@ -10,6 +10,8 @@ namespace Game.Dialogue.Editor
     {
         Dialogue selectedDialogue = null;
         GUIStyle nodeStyle;
+        DialogueNode draggingNode = null;
+        Vector2 draggingOffset;
 
         // Creates dialogue window
         [MenuItem("Window/Dialogue Editor")]
@@ -64,6 +66,7 @@ namespace Game.Dialogue.Editor
             }
             else
             {
+                ProcessEvents();
                 foreach(var node in selectedDialogue.GetAllNodes())
                 {
                     OnGUINode(node);
@@ -73,7 +76,7 @@ namespace Game.Dialogue.Editor
 
         private void OnGUINode(DialogueNode node)
         {
-            GUILayout.BeginArea(node.position, nodeStyle);
+            GUILayout.BeginArea(node.rect, nodeStyle);
             EditorGUI.BeginChangeCheck();
 
             EditorGUILayout.LabelField("Node:", EditorStyles.whiteLabel);
@@ -89,6 +92,41 @@ namespace Game.Dialogue.Editor
             }
 
             GUILayout.EndArea();
+        }
+
+        private void ProcessEvents()
+        {
+            if (Event.current.type == EventType.MouseDown && draggingNode == null)
+            {
+                draggingNode = GetNodeAtPoint(Event.current.mousePosition);
+                if (draggingNode != null)
+                {
+                    draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
+                }
+            }
+            else if (Event.current.type == EventType.MouseDrag && draggingNode != null)
+            {
+                Undo.RecordObject(selectedDialogue, "Move Dialogue Node");
+                draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+                GUI.changed = true;
+            }
+            else if (Event.current.type == EventType.MouseDown && draggingNode != null)
+            {
+                draggingNode = null;
+            }
+        }
+
+        private DialogueNode GetNodeAtPoint(Vector2 mousePosition)
+        {
+            DialogueNode foundNode = null;
+            foreach (DialogueNode node in selectedDialogue.GetAllNodes())
+            {
+                if (node.rect.Contains(mousePosition))
+                {
+                    foundNode = node;
+                }
+            }
+            return foundNode;
         }
     }
 }

@@ -10,6 +10,6 @@ namespace Game.Dialogue
         public string uniqueID;
         public string text;
         public string[] children;
-        public Rect position;
+        public Rect rect = new Rect(20, 20, 200, 100);
     }
 }
