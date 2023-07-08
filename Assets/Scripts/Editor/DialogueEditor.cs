@@ -14,6 +14,7 @@ namespace Game.Dialogue.Editor
         [System.NonSerialized] Vector2 draggingOffset;
         [System.NonSerialized] DialogueNode creatingNode = null;
         [System.NonSerialized] DialogueNode deletingNode = null;
+        [System.NonSerialized] DialogueNode linkingParentNode = null;
 
         // Creates dialogue window
         [MenuItem("Window/Dialogue Editor")]
@@ -86,7 +87,6 @@ namespace Game.Dialogue.Editor
                     selectedDialogue.CreateNode(creatingNode);
                     creatingNode = null;
                 }
-
                 // Delete node
                 if (deletingNode != null)
                 {
@@ -118,7 +118,23 @@ namespace Game.Dialogue.Editor
                 // Signal - we need to make a new child node from the given node later
                 creatingNode = node;
             }
-
+            if (linkingParentNode == null)
+            {
+                if (GUILayout.Button("Link"))
+                {
+                    linkingParentNode = node;
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Child"))
+                {
+                    Undo.RecordObject(selectedDialogue, "Add Dialogue Link");
+                    linkingParentNode.children.Add(node.uniqueID);
+                    linkingParentNode = null;
+                }
+            }
+            
             if (GUILayout.Button("Del"))
             {
                 // We cannot edit a list while it's being iterated through

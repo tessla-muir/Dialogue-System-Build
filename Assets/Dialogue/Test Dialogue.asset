@@ -17,8 +17,8 @@ MonoBehaviour:
     text: Hello!
     children:
     - d084d338-d5af-41aa-944d-6775cbdb45fd
-    - a1b54bef-2a7e-4272-ab51-a91d99d57f3b
-    - 75eaaff5-f0d5-42e1-b724-ed603545ffe1
+    - fc84f336-f49a-4397-94ae-63e9d4cf76ae
+    - 630c1304-1aec-41e0-9033-6bad17f73ab0
     rect:
       serializedVersion: 2
       x: 10
@@ -34,21 +34,21 @@ MonoBehaviour:
       y: 165
       width: 200
       height: 100
-  - uniqueID: a1b54bef-2a7e-4272-ab51-a91d99d57f3b
+  - uniqueID: fc84f336-f49a-4397-94ae-63e9d4cf76ae
     text: Answer 2
     children: []
     rect:
       serializedVersion: 2
-      x: 284
-      y: 298
+      x: 285
+      y: 272
       width: 200
       height: 100
-  - uniqueID: 75eaaff5-f0d5-42e1-b724-ed603545ffe1
+  - uniqueID: 630c1304-1aec-41e0-9033-6bad17f73ab0
     text: Answer 3
     children: []
     rect:
       serializedVersion: 2
-      x: 285
-      y: 418
+      x: 284
+      y: 384
       width: 200
       height: 100
