@@ -9,9 +9,10 @@ namespace Game.Dialogue.Editor
     public class DialogueEditor : EditorWindow
     {
         Dialogue selectedDialogue = null;
-        GUIStyle nodeStyle;
-        DialogueNode draggingNode = null;
-        Vector2 draggingOffset;
+        [System.NonSerialized] GUIStyle nodeStyle;
+        [System.NonSerialized] DialogueNode draggingNode = null;
+        [System.NonSerialized] Vector2 draggingOffset;
+        [System.NonSerialized] DialogueNode creatingNode = null;
 
         // Creates dialogue window
         [MenuItem("Window/Dialogue Editor")]
@@ -76,6 +77,14 @@ namespace Game.Dialogue.Editor
                 {
                     DrawNode(node);
                 }
+
+                // Create node
+                if (creatingNode != null)
+                {
+                    Undo.RecordObject(selectedDialogue, "Added Dialogue Node");
+                    selectedDialogue.CreateNode(creatingNode);
+                    creatingNode = null;
+                }
             }
         }
 
@@ -85,16 +94,18 @@ namespace Game.Dialogue.Editor
             GUILayout.BeginArea(node.rect, nodeStyle);
             EditorGUI.BeginChangeCheck();
 
-            EditorGUILayout.LabelField("Node:", EditorStyles.whiteLabel);
             string newText = EditorGUILayout.TextField(node.text);
-            string newUniqueID = EditorGUILayout.TextField(node.uniqueID);
 
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(selectedDialogue, "Update Dialogue Text");
-
                 node.text = newText;
-                node.uniqueID = newUniqueID;
+            }
+
+            if (GUILayout.Button("+"))
+            {
+                // Signal - we need to make a new child node from the given node
+                creatingNode = node;
             }
 
             GUILayout.EndArea();
@@ -137,6 +148,7 @@ namespace Game.Dialogue.Editor
             }
         }
 
+        // If available, gets a node at a given mouse position
         private DialogueNode GetNodeAtPoint(Vector2 mousePosition)
         {
             DialogueNode foundNode = null;
@@ -144,7 +156,7 @@ namespace Game.Dialogue.Editor
             {
                 if (node.rect.Contains(mousePosition))
                 {
-                    foundNode = node;
+                    foundNode = node; // Keeps searching to find the top layer node
                 }
             }
             return foundNode;

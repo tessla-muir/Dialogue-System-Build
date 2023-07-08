@@ -15,7 +15,9 @@ namespace Game.Dialogue
         {
             if (nodes.Count == 0)
             {
-                nodes.Add(new DialogueNode());
+                DialogueNode rootNode = new DialogueNode();
+                rootNode.uniqueID = System.Guid.NewGuid().ToString();
+                nodes.Add(rootNode);
             }
         }
 #endif
@@ -49,6 +51,17 @@ namespace Game.Dialogue
                     yield return nodeLookup[childID];
                 }
             }
+        }
+
+        // Creates a child node for the given parent node
+        public void CreateNode(DialogueNode parent)
+        {
+            DialogueNode newNode = new DialogueNode();
+            newNode.rect.position = parent.rect.position + new Vector2(200, 0);
+            newNode.uniqueID = System.Guid.NewGuid().ToString();
+            parent.children.Add(newNode.uniqueID);
+            nodes.Add(newNode);
+            OnValidate(); // Updates Bezier curves
         }
     }
 }
