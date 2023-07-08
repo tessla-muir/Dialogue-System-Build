@@ -63,5 +63,22 @@ namespace Game.Dialogue
             nodes.Add(newNode);
             OnValidate(); // Updates Bezier curves
         }
+
+        // Deletes a given node
+        public void DeleteNode(DialogueNode nodeToRemove)
+        {
+            nodes.Remove(nodeToRemove);
+            OnValidate(); // Updates GUI
+            CleanChildren(nodeToRemove);
+        }
+
+        // Remove connection of a given node to children
+        public void CleanChildren(DialogueNode nodeToClean)
+        {
+            foreach (DialogueNode node in GetAllNodes())
+            {
+                node.children.Remove(nodeToClean.uniqueID);
+            }
+        }
     }
 }
