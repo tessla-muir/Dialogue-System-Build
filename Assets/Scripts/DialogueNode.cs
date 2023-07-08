@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace Game.Dialogue
 {
-    [System.Serializable]
-    public class DialogueNode
+    public class DialogueNode : ScriptableObject
     {
-        public string uniqueID;
         public string text;
         public List<string> children = new List<string>();
         public Rect rect = new Rect(20, 20, 200, 100);

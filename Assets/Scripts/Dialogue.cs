@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Game.Dialogue
@@ -15,9 +16,7 @@ namespace Game.Dialogue
         {
             if (nodes.Count == 0)
             {
-                DialogueNode rootNode = new DialogueNode();
-                rootNode.uniqueID = System.Guid.NewGuid().ToString();
-                nodes.Add(rootNode);
+                CreateNode(null);
             }
         }
 #endif
@@ -26,7 +25,10 @@ namespace Game.Dialogue
             nodeLookup.Clear(); // Start with a clean state
             foreach (DialogueNode node in GetAllNodes())
             {
-                nodeLookup[node.uniqueID] = node;
+                if (node != null)
+                {
+                    nodeLookup[node.name] = node;
+                }
             }
         }
 
@@ -56,10 +58,14 @@ namespace Game.Dialogue
         // Creates a child node for the given parent node
         public void CreateNode(DialogueNode parent)
         {
-            DialogueNode newNode = new DialogueNode();
-            newNode.rect.position = parent.rect.position + new Vector2(200, 0);
-            newNode.uniqueID = System.Guid.NewGuid().ToString();
-            parent.children.Add(newNode.uniqueID);
+            DialogueNode newNode = CreateInstance<DialogueNode>();
+            newNode.name = System.Guid.NewGuid().ToString();
+            Undo.RegisterCreatedObjectUndo(newNode, "Created Dialogue Node");
+            if (parent != null)
+            {
+                parent.children.Add(newNode.name);
+                newNode.rect.position = parent.rect.position + new Vector2(200, 0);
+            }
             nodes.Add(newNode);
             OnValidate(); // Updates Bezier curves
         }
@@ -68,6 +74,7 @@ namespace Game.Dialogue
         public void DeleteNode(DialogueNode nodeToRemove)
         {
             nodes.Remove(nodeToRemove);
+            Undo.DestroyObjectImmediate(nodeToRemove);
             OnValidate(); // Updates GUI
             CleanChildren(nodeToRemove);
         }
@@ -77,7 +84,7 @@ namespace Game.Dialogue
         {
             foreach (DialogueNode node in GetAllNodes())
             {
-                node.children.Remove(nodeToClean.uniqueID);
+                node.children.Remove(nodeToClean.name);
             }
         }
     }
