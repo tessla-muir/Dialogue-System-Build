@@ -64,9 +64,19 @@ namespace Game.Dialogue.Editor
             Dialogue newDialogue = Selection.activeObject as Dialogue;
             if (newDialogue != null)
             {
+                ResetNodes();
                 selectedDialogue = newDialogue;
                 Repaint(); // Calls OnGUI
             }
+        }
+
+        // Reset nodes so you can't link between two different dialogues
+        private void ResetNodes()
+        {
+            draggingNode = null;
+            creatingNode = null;
+            deletingNode = null;
+            linkingParentNode = null;
         }
 
         private void OnGUI() {
