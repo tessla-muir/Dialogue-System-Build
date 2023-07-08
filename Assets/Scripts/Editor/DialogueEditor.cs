@@ -12,9 +12,13 @@ namespace Game.Dialogue.Editor
         [System.NonSerialized] GUIStyle nodeStyle;
         [System.NonSerialized] DialogueNode draggingNode = null;
         [System.NonSerialized] Vector2 draggingOffset;
+
         [System.NonSerialized] DialogueNode creatingNode = null;
         [System.NonSerialized] DialogueNode deletingNode = null;
         [System.NonSerialized] DialogueNode linkingParentNode = null;
+
+        Vector2 scrollPosition; // Keep position through serialization
+        [System.NonSerialized] Vector2 windowSize = new Vector2(600, 600);
 
         // Creates dialogue window
         [MenuItem("Window/Dialogue Editor")]
@@ -52,6 +56,7 @@ namespace Game.Dialogue.Editor
             nodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
 
+        // Updates editor if a different Dialogue is selected
         private void OnSelectionChanged()
         {
             Dialogue newDialogue = Selection.activeObject as Dialogue;
@@ -70,6 +75,9 @@ namespace Game.Dialogue.Editor
             else
             {
                 ProcessEvents();
+                scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+                GUILayoutUtility.GetRect(windowSize.x, windowSize.y);
+
                 // Draw Nodes after connections so that nodes are always on top of curves
                 foreach(var node in selectedDialogue.GetAllNodes())
                 {
@@ -79,6 +87,7 @@ namespace Game.Dialogue.Editor
                 {
                     DrawNode(node);
                 }
+                EditorGUILayout.EndScrollView();
 
                 // Create node
                 if (creatingNode != null)
@@ -130,6 +139,7 @@ namespace Game.Dialogue.Editor
             GUILayout.EndArea();
         }
 
+        // Determines what version of the link button to draw on a given node
         private void DrawLinkButtons(DialogueNode node)
         {
             if (linkingParentNode == null)
@@ -186,7 +196,7 @@ namespace Game.Dialogue.Editor
         {
             if (Event.current.type == EventType.MouseDown && draggingNode == null)
             {
-                draggingNode = GetNodeAtPoint(Event.current.mousePosition);
+                draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
                 if (draggingNode != null)
                 {
                     draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
@@ -201,6 +211,27 @@ namespace Game.Dialogue.Editor
             else if (Event.current.type == EventType.MouseDown && draggingNode != null)
             {
                 draggingNode = null;
+            }
+
+             AlterWindowSize();
+        }
+
+        // Updates window size based on current nodes
+        private void AlterWindowSize()
+        {
+            Vector2 maxSize = new Vector2(0, 0);
+            
+            foreach (DialogueNode node in selectedDialogue.GetAllNodes())
+            {
+                if (maxSize.x < node.GetRect().xMax)
+                {
+                    maxSize.x = node.GetRect().xMax;
+                }
+                if (maxSize.y < node.GetRect().yMax)
+                {
+                    maxSize.y = node.GetRect().yMax;
+                }
+                windowSize = maxSize + new Vector2(200, 200);
             }
         }
 
