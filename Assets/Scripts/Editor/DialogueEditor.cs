@@ -118,11 +118,41 @@ namespace Game.Dialogue.Editor
                 // Signal - we need to make a new child node from the given node later
                 creatingNode = node;
             }
+            DrawLinkButtons(node);
+            if (GUILayout.Button("Del"))
+            {
+                // We cannot edit a list while it's being iterated through
+                // Signal - we need to delete this node later
+                deletingNode = node;
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.EndArea();
+        }
+
+        private void DrawLinkButtons(DialogueNode node)
+        {
             if (linkingParentNode == null)
             {
                 if (GUILayout.Button("Link"))
                 {
                     linkingParentNode = node;
+                }
+            }
+            else if (linkingParentNode == node)
+            {
+                if (GUILayout.Button("Cancel"))
+                {
+                    linkingParentNode = null;
+                }
+            }
+            else if (linkingParentNode.children.Contains(node.uniqueID))
+            {
+                if (GUILayout.Button("Unlink"))
+                {
+                    Undo.RecordObject(selectedDialogue, "Remove Dialogue Link");
+                    linkingParentNode.children.Remove(node.uniqueID);
+                    linkingParentNode = null;
                 }
             }
             else
@@ -134,16 +164,7 @@ namespace Game.Dialogue.Editor
                     linkingParentNode = null;
                 }
             }
-            
-            if (GUILayout.Button("Del"))
-            {
-                // We cannot edit a list while it's being iterated through
-                // Signal - we need to delete this node later
-                deletingNode = node;
-            }
-            GUILayout.EndHorizontal();
-
-            GUILayout.EndArea();
+    
         }
 
         // Draws Bezier curves between parent and child nodes
