@@ -8,6 +8,7 @@ namespace Game.Dialogue
     public class Dialogue : ScriptableObject
     {
         [SerializeField] List<DialogueNode> nodes = new List<DialogueNode>();
+        Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
 
 #if UNITY_EDITOR 
         private void Awake()
@@ -18,6 +19,14 @@ namespace Game.Dialogue
             }
         }
 #endif
+        private void OnValidate()
+        {
+            nodeLookup.Clear(); // Start with a clean state
+            foreach (DialogueNode node in GetAllNodes())
+            {
+                nodeLookup[node.uniqueID] = node;
+            }
+        }
 
         public IEnumerable<DialogueNode> GetAllNodes()
         {
@@ -27,6 +36,19 @@ namespace Game.Dialogue
         public DialogueNode GetRootNode()
         {
             return nodes[0];
+        }
+
+        // Returns all child nodes for a given parent node
+        public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parent)
+        {
+            // Dictonary for efficency
+            foreach (string childID in parent.children)
+            {
+                if (nodeLookup.ContainsKey(childID))
+                {
+                    yield return nodeLookup[childID];
+                }
+            }
         }
     }
 }

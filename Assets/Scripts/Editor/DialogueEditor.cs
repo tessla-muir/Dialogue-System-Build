@@ -67,14 +67,20 @@ namespace Game.Dialogue.Editor
             else
             {
                 ProcessEvents();
+                // Draw Nodes after connections so that nodes are always on top of curves
                 foreach(var node in selectedDialogue.GetAllNodes())
                 {
-                    OnGUINode(node);
+                    DrawConnections(node);
+                }
+                foreach(var node in selectedDialogue.GetAllNodes())
+                {
+                    DrawNode(node);
                 }
             }
         }
 
-        private void OnGUINode(DialogueNode node)
+        // Draws a given node onto the editor GUI
+        private void DrawNode(DialogueNode node)
         {
             GUILayout.BeginArea(node.rect, nodeStyle);
             EditorGUI.BeginChangeCheck();
@@ -92,6 +98,21 @@ namespace Game.Dialogue.Editor
             }
 
             GUILayout.EndArea();
+        }
+
+        // Draws Bezier curves between parent and child nodes
+        private void DrawConnections(DialogueNode node) 
+        {
+            float offset = 5f;
+            Vector3 startPosition = new Vector2(node.rect.xMax - offset, node.rect.center.y);
+
+            foreach (DialogueNode child in selectedDialogue.GetAllChildren(node))
+            {
+                Vector3 endPosition = new Vector2(child.rect.xMin + offset, child.rect.center.y);
+                Vector3 controlPointOffset = new Vector2(100,0);
+                controlPointOffset.x *= 0.8f;
+                Handles.DrawBezier(startPosition, endPosition, startPosition + controlPointOffset, endPosition - controlPointOffset, Color.white, null, 4f);
+            }
         }
 
         private void ProcessEvents()
