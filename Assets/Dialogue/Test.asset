@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
   m_Name: d233a7bd-37b3-45e9-879d-2486068ce4db
   m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
   text: Woosh!
   children: []
   rect:
@@ -32,6 +33,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
   m_Name: 642f11df-a88f-4c96-abb8-b33d5ee680c8
   m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
   text: Wowza!
   children: []
   rect:
@@ -68,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
   m_Name: 7a4e098f-27d8-44f1-a1b9-ae450b2f4c11
   m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
   text: Hello!
   children:
   - d233a7bd-37b3-45e9-879d-2486068ce4db
