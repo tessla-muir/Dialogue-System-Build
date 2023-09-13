@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6931063341468728921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 45c102b8-8525-4800-b5bf-b1e3e5a07ae9
+  m_EditorClassIdentifier: 
+  text: Not well at all.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 290
+    y: 341
+    width: 200
+    height: 100
+--- !u!114 &-1923688947950501577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 4f5e1572-ae2a-4f33-b567-08a9ed458ce2
+  m_EditorClassIdentifier: 
+  text: It's a day... I guess.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 317
+    y: 225
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8aa8613d9cc2941911525b012ab638, type: 3}
+  m_Name: Test2
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 479701970359444024}
+  - {fileID: 7116233392304520968}
+  - {fileID: -1923688947950501577}
+  - {fileID: -6931063341468728921}
+--- !u!114 &479701970359444024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 63bc4919-f49d-420d-a4a2-d94a8b330350
+  m_EditorClassIdentifier: 
+  text: How are you?
+  children:
+  - 54c649a1-1a12-46ec-93f5-2fff67613d24
+  - 4f5e1572-ae2a-4f33-b567-08a9ed458ce2
+  - 45c102b8-8525-4800-b5bf-b1e3e5a07ae9
+  rect:
+    serializedVersion: 2
+    x: 42
+    y: 225
+    width: 200
+    height: 100
+--- !u!114 &7116233392304520968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 54c649a1-1a12-46ec-93f5-2fff67613d24
+  m_EditorClassIdentifier: 
+  text: I'm doing great!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 295
+    y: 105.99999
+    width: 200
+    height: 100

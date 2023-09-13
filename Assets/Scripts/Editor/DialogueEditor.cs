@@ -104,14 +104,12 @@ namespace Game.Dialogue.Editor
                 // Create node
                 if (creatingNode != null)
                 {
-                    Undo.RecordObject(selectedDialogue, "Added Dialogue Node");
                     selectedDialogue.CreateNode(creatingNode);
                     creatingNode = null;
                 }
                 // Delete node
                 if (deletingNode != null)
                 {
-                    Undo.RecordObject(selectedDialogue, "Deleted Dialogue Node");
                     selectedDialogue.DeleteNode(deletingNode);
                     deletingNode = null;
                 }
@@ -121,16 +119,8 @@ namespace Game.Dialogue.Editor
         // Draws a given node onto the editor GUI
         private void DrawNode(DialogueNode node)
         {
-            GUILayout.BeginArea(node.rect, nodeStyle);
-            EditorGUI.BeginChangeCheck();
-
-            string newText = EditorGUILayout.TextField(node.text);
-
-            if (EditorGUI.EndChangeCheck())
-            {
-                Undo.RecordObject(selectedDialogue, "Update Dialogue Text");
-                node.text = newText;
-            }
+            GUILayout.BeginArea(node.GetRect(), nodeStyle);
+            node.SetText(EditorGUILayout.TextField(node.GetText()));
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Add"))
@@ -168,12 +158,11 @@ namespace Game.Dialogue.Editor
                     linkingParentNode = null;
                 }
             }
-            else if (linkingParentNode.children.Contains(node.name))
+            else if (linkingParentNode.GetChildren().Contains(node.name))
             {
                 if (GUILayout.Button("Unlink"))
                 {
-                    Undo.RecordObject(selectedDialogue, "Remove Dialogue Link");
-                    linkingParentNode.children.Remove(node.name);
+                    linkingParentNode.RemoveChild(node.name);
                     linkingParentNode = null;
                 }
             }
@@ -181,8 +170,7 @@ namespace Game.Dialogue.Editor
             {
                 if (GUILayout.Button("Child"))
                 {
-                    Undo.RecordObject(selectedDialogue, "Add Dialogue Link");
-                    linkingParentNode.children.Add(node.name);
+                    linkingParentNode.AddChild(node.name);
                     linkingParentNode = null;
                 }
             }
@@ -193,11 +181,11 @@ namespace Game.Dialogue.Editor
         private void DrawConnections(DialogueNode node) 
         {
             float offset = 5f;
-            Vector3 startPosition = new Vector2(node.rect.xMax - offset, node.rect.center.y);
+            Vector3 startPosition = new Vector2(node.GetRect().xMax - offset, node.GetRect().center.y);
 
             foreach (DialogueNode child in selectedDialogue.GetAllChildren(node))
             {
-                Vector3 endPosition = new Vector2(child.rect.xMin + offset, child.rect.center.y);
+                Vector3 endPosition = new Vector2(child.GetRect().xMin + offset, child.GetRect().center.y);
                 Vector3 controlPointOffset = new Vector2(100,0);
                 controlPointOffset.x *= 0.8f;
                 Handles.DrawBezier(startPosition, endPosition, startPosition + controlPointOffset, endPosition - controlPointOffset, Color.white, null, 4f);
@@ -212,7 +200,7 @@ namespace Game.Dialogue.Editor
                 if (draggingNode != null)
                 {
                     // Dragging Node
-                    draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
+                    draggingOffset = draggingNode.GetRect().position - Event.current.mousePosition;
                     Selection.activeObject = draggingNode;
                 }
                 else
@@ -225,9 +213,7 @@ namespace Game.Dialogue.Editor
             }
             else if (Event.current.type == EventType.MouseDrag && draggingNode != null)
             {
-                Undo.RecordObject(selectedDialogue, "Move Dialogue Node");
-                draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
-
+                draggingNode.SetRectPosition(Event.current.mousePosition + draggingOffset);
                 GUI.changed = true;
             }
             else if (Event.current.type == EventType.MouseDrag && draggingCanvas)
@@ -272,7 +258,7 @@ namespace Game.Dialogue.Editor
             DialogueNode foundNode = null;
             foreach (DialogueNode node in selectedDialogue.GetAllNodes())
             {
-                if (node.rect.Contains(mousePosition))
+                if (node.GetRect().Contains(mousePosition))
                 {
                     foundNode = node; // Keeps searching to find the top layer node
                 }

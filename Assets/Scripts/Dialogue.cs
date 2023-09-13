@@ -37,7 +37,7 @@ namespace Game.Dialogue
         public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parent)
         {
             // Dictonary for efficency
-            foreach (string childID in parent.children)
+            foreach (string childID in parent.GetChildren())
             {
                 if (nodeLookup.ContainsKey(childID))
                 {
@@ -46,28 +46,23 @@ namespace Game.Dialogue
             }
         }
 
+#if UNITY_EDITOR
         // Creates a child node for the given parent node
         public void CreateNode(DialogueNode parent)
         {
-            DialogueNode newNode = CreateInstance<DialogueNode>();
-            newNode.name = System.Guid.NewGuid().ToString();
-            Undo.RegisterCreatedObjectUndo(newNode, "Created Dialogue Node");
-            if (parent != null)
-            {
-                parent.children.Add(newNode.name);
-                newNode.rect.position = parent.rect.position + new Vector2(200, 0);
-            }
-            nodes.Add(newNode);
-            OnValidate(); // Updates Bezier curves
+            DialogueNode newNode = MakeNode(parent);
+            Undo.RecordObject(this, "Added Dialogue Node");
+            AddNode(newNode);
         }
 
         // Deletes a given node
         public void DeleteNode(DialogueNode nodeToRemove)
         {
+            Undo.RecordObject(this, "Deleted Dialogue Node");
             nodes.Remove(nodeToRemove);
-            Undo.DestroyObjectImmediate(nodeToRemove);
             OnValidate(); // Updates GUI
             CleanChildren(nodeToRemove);
+            Undo.DestroyObjectImmediate(nodeToRemove);
         }
 
         // Remove connection of a given node to children
@@ -75,15 +70,39 @@ namespace Game.Dialogue
         {
             foreach (DialogueNode node in GetAllNodes())
             {
-                node.children.Remove(nodeToClean.name);
+                node.RemoveChild(nodeToClean.name);
             }
         }
 
+        
+        private static DialogueNode MakeNode(DialogueNode parent)
+        {
+            DialogueNode newNode = CreateInstance<DialogueNode>();
+            newNode.name = System.Guid.NewGuid().ToString();
+            Undo.RegisterCreatedObjectUndo(newNode, "Created Dialogue Node");
+            if (parent != null)
+            {
+                parent.AddChild(newNode.name);
+                newNode.SetRectPosition(parent.GetRect().position + new Vector2(200, 0));
+            }
+
+            return newNode;
+        }
+
+        private void AddNode(DialogueNode newNode)
+        {
+            nodes.Add(newNode);
+            OnValidate(); // Updates Bezier curves
+        }
+#endif
+
         public void OnBeforeSerialize()
         {
+#if UNITY_EDITOR
             if (nodes.Count == 0)
             {
-                CreateNode(null);
+                DialogueNode newNode = MakeNode(null);
+                AddNode(newNode);
             }
 
             if (AssetDatabase.GetAssetPath(this) != "")
@@ -96,6 +115,7 @@ namespace Game.Dialogue
                     }
                 }
             }
+#endif
         }
 
         public void OnAfterDeserialize()
