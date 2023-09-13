@@ -10,6 +10,7 @@ namespace Game.Dialogue.Editor
     {
         Dialogue selectedDialogue = null;
         [System.NonSerialized] GUIStyle nodeStyle;
+        [System.NonSerialized] GUIStyle playerNodeStyle;
         [System.NonSerialized] DialogueNode draggingNode = null;
         [System.NonSerialized] Vector2 draggingOffset;
 
@@ -52,10 +53,16 @@ namespace Game.Dialogue.Editor
 
             // Style nodes
             nodeStyle = new GUIStyle();
-            nodeStyle.normal.background = EditorGUIUtility.Load("node2") as Texture2D;
+            nodeStyle.normal.background = EditorGUIUtility.Load("node0") as Texture2D;
             nodeStyle.normal.textColor = Color.white;
             nodeStyle.padding = new RectOffset(20, 20, 20, 20);
             nodeStyle.border = new RectOffset(12, 12, 12, 12);
+
+            playerNodeStyle = new GUIStyle();
+            playerNodeStyle.normal.background = EditorGUIUtility.Load("node2") as Texture2D;
+            playerNodeStyle.normal.textColor = Color.white;
+            playerNodeStyle.padding = new RectOffset(20, 20, 20, 20);
+            playerNodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
 
         // Updates editor if a different Dialogue is selected
@@ -119,7 +126,14 @@ namespace Game.Dialogue.Editor
         // Draws a given node onto the editor GUI
         private void DrawNode(DialogueNode node)
         {
-            GUILayout.BeginArea(node.GetRect(), nodeStyle);
+            // Determine color based on if player is talking
+            GUIStyle style = nodeStyle;
+            if (node.IsPlayerSpeaking())
+            {
+                style = playerNodeStyle;
+            }
+
+            GUILayout.BeginArea(node.GetRect(), style);
             node.SetText(EditorGUILayout.TextField(node.GetText()));
 
             GUILayout.BeginHorizontal();

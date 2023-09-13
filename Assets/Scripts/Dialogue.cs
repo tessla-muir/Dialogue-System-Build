@@ -51,6 +51,7 @@ namespace Game.Dialogue
         public void CreateNode(DialogueNode parent)
         {
             DialogueNode newNode = MakeNode(parent);
+            newNode.SetIsPlayerSpeaking(!parent.IsPlayerSpeaking());
             Undo.RecordObject(this, "Added Dialogue Node");
             AddNode(newNode);
         }

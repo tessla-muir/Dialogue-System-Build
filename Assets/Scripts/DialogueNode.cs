@@ -7,6 +7,7 @@ namespace Game.Dialogue
 {
     public class DialogueNode : ScriptableObject
     {
+        [SerializeField] bool isPlayerSpeaking = false;
         [SerializeField] string text;
         [SerializeField] List<string> children = new List<string>();
         [SerializeField] Rect rect = new Rect(20, 20, 200, 100);
@@ -24,6 +25,11 @@ namespace Game.Dialogue
         public List<string> GetChildren()
         {
             return children;
+        }
+
+        public bool IsPlayerSpeaking()
+        {
+            return isPlayerSpeaking;
         }
 
 #if UNITY_EDITOR
@@ -52,6 +58,12 @@ namespace Game.Dialogue
         {
             Undo.RecordObject(this, "Add Dialogue Link");
             children.Add(childID);
+        }
+
+        public void SetIsPlayerSpeaking(bool val)
+        {
+            Undo.RecordObject(this, "Change Dialogue Speaking");
+            isPlayerSpeaking = val;
         }
 #endif
     }
