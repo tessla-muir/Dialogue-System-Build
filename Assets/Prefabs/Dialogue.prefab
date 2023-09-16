@@ -577,6 +577,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AIText: {fileID: 3462885818975121124}
+  button: {fileID: 528049147674934639}
+  quitSprite: {fileID: 21300000, guid: 8cfa839d04ab9cd46a47dbf91a205321, type: 3}
 --- !u!1 &5919579880112160655
 GameObject:
   m_ObjectHideFlags: 0
