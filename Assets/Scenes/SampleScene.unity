@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &302238439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302238441}
+  - component: {fileID: 302238440}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &302238440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302238439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7e8087c3bc9754596ab4eaf20773d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDialogue: {fileID: 11400000, guid: 97403ca9d8bb1f14e9dde75a11c980e6, type: 2}
+--- !u!4 &302238441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302238439}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.24566054, y: -0.3656132, z: 204.12436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +486,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 627460687611213172, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 41d5b7dbba3fd1145b4a77130b63eb82, type: 2}
+    - target: {fileID: 627460687611213172, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6110984961446432225, guid: 41d5b7dbba3fd1145b4a77130b63eb82, type: 2}
     - target: {fileID: 2012468572998593874, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -548,6 +601,28 @@ PrefabInstance:
     - target: {fileID: 3069450605091406966, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462885818975121124, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
+      propertyPath: m_text
+      value: 'Hello! My name is Jake. Jake from State Farm. I''m caling to inform
+        you that your death is sad okay? It''s hard to believe one of our best employees
+        could just poof up and die. What a silly goose. You''re such a silly goose.
+        Who''s my silly goose? I wonder what you''re thinking. There can''t be much
+        thought in that bird brain - I know it. Honestly, I don''t know how you function
+        well in real life... It seems like an absoulte marvel. Even to me. And I''m
+        a wizard! An old one at that. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462885818975121124, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+    - target: {fileID: 3462885818975121124, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+    - target: {fileID: 3462885818975121124, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 3762995750486066391, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
       propertyPath: m_AnchorMax.y

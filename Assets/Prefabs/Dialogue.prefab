@@ -69,14 +69,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hello! My name is Jake. Jake from State Farm. I'm caling to inform you
     that your death is sad okay? It's hard to believe one of our best employees could
-    just poof up and die. What a silly goose. You're such a silly goose. Who's my
-    silly goose? I woner what you're thinking. There can't be much thought in that
-    bird brain - I know it. Honestly, I don't know how you function well in real
-    life... It seems like an absoulte marvel. Even to me. And I'm a wizard! An old
-    one at that. What on earth are you even doing??
+    just poof up and die. What a silly goose. You're such a silly goose. I woner
+    what you're thinking. There can't be much thought in that bird brain - I know
+    it. Honestly, I don't know how you function well in real life... It seems like
+    an absoulte marvel. Even to me. And I'm a wizard! An old one at that. What on
+    earth are you even doing??
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 715457516778062573}
   - component: {fileID: 2006106979495497980}
   - component: {fileID: 4142466782638337908}
+  - component: {fileID: 6005808760005905590}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -563,6 +564,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &6005808760005905590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3799827727839955785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ecc3677acbbc94ea6ad0ae17eed128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIText: {fileID: 3462885818975121124}
 --- !u!1 &5919579880112160655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,8 +1178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wizard
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 41d5b7dbba3fd1145b4a77130b63eb82, type: 2}
+  m_sharedMaterial: {fileID: -6110984961446432225, guid: 41d5b7dbba3fd1145b4a77130b63eb82, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
