@@ -11,8 +11,13 @@ namespace Game.UI
     {
         PlayerConversant playerConversant;
         [SerializeField] TextMeshProUGUI AIText;
+
         [SerializeField] Button button;
         [SerializeField] Sprite quitSprite;
+
+        [SerializeField] Transform choiceRoot;
+        [SerializeField] GameObject choicePrefab;
+
 
         void Start()
         {
@@ -43,9 +48,25 @@ namespace Game.UI
         {
             AIText.text = playerConversant.GetText();
 
+            // Change look of button when at end of dialogue
             if (!playerConversant.HasNext())
             {
                 button.transform.GetChild(0).GetComponent<Image>().sprite = quitSprite;
+            }
+
+            // Empty out choices
+            // Possible performance delay - could keep track of choices and update accordingly instead
+            foreach (Transform choice in choiceRoot)
+            {
+                Destroy(choice.gameObject);
+            }
+
+            // Fill out choices
+            foreach (string text in playerConversant.GetChoices())
+            {
+                // Create choice button and set text
+                GameObject choice = Instantiate(choicePrefab, choiceRoot);
+                choice.GetComponentInChildren<TextMeshProUGUI>().text = text;
             }
         }
     }

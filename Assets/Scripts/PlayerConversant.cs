@@ -25,6 +25,13 @@ namespace Game.Dialogue
             return currentNode.GetText();
         }
 
+        public IEnumerable<string> GetChoices()
+        {
+            yield return "I'm doing well";
+            yield return "Eh. It could be better.";
+            yield return "Leave me alone";
+        }
+
         // Sets the current node to the first child node
         public void Next()
         {
