@@ -10,6 +10,7 @@ namespace Game.Dialogue
         [SerializeField] Dialogue currentDialogue;
         DialogueNode currentNode = null;
         bool isChoosing = false;
+        bool hasSingleChoice = false;
 
         private void Awake() 
         {
@@ -19,6 +20,11 @@ namespace Game.Dialogue
         public bool IsChoosing()
         {
             return isChoosing;
+        }
+
+        public bool HasSingleChoice()
+        {
+            return hasSingleChoice;
         }
 
         public string GetText()
@@ -39,13 +45,20 @@ namespace Game.Dialogue
         // Sets the current node to the first child node
         public void Next()
         {
-            if (currentDialogue.GetPlayerChildren(currentNode).Count() > 0)
+            DialogueNode[] childNodes = currentDialogue.GetAllChildren(currentNode).ToArray();
+
+            if (currentDialogue.GetPlayerChildren(currentNode).Count() == 1)
+            {
+                hasSingleChoice = true;
+                currentNode = childNodes[0];
+                return;
+            }
+            else if (currentDialogue.GetPlayerChildren(currentNode).Count() > 0)
             {
                 isChoosing = true;
                 return;
             }
 
-            DialogueNode[] childNodes = currentDialogue.GetAIChildren(currentNode).ToArray();
             currentNode = childNodes[0];
         }
 

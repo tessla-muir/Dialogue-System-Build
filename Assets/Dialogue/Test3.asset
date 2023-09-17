@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8888912920531128279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 57373602-a3a8-4bec-aeb9-bf7be5f34095
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Hello...
+  children:
+  - e1e64de0-18c7-40cc-8b58-fac75a62c4dd
+  - 06e8839c-ca07-4c3c-8c37-c9973f1145ef
+  - e4b15c34-f3b4-47eb-a2f1-aac1f5f35016
+  rect:
+    serializedVersion: 2
+    x: 283
+    y: 285
+    width: 200
+    height: 100
+--- !u!114 &-304809695340632544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: e4b15c34-f3b4-47eb-a2f1-aac1f5f35016
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Ask where the hell you are.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 511
+    y: 399
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8aa8613d9cc2941911525b012ab638, type: 3}
+  m_Name: Test3
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 715952784754616865}
+  - {fileID: -8888912920531128279}
+  - {fileID: 5715527752411179602}
+  - {fileID: 2544520503064037516}
+  - {fileID: -304809695340632544}
+--- !u!114 &715952784754616865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 02ebe9a8-a19a-46b7-81e9-dddfa418dacf
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Hello, young traveler!
+  children:
+  - 57373602-a3a8-4bec-aeb9-bf7be5f34095
+  rect:
+    serializedVersion: 2
+    x: 63.000008
+    y: 285
+    width: 200
+    height: 100
+--- !u!114 &2544520503064037516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 06e8839c-ca07-4c3c-8c37-c9973f1145ef
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Compliment his beard.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 527
+    y: 285
+    width: 200
+    height: 100
+--- !u!114 &5715527752411179602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: e1e64de0-18c7-40cc-8b58-fac75a62c4dd
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Talk about the weather.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 514
+    y: 164
+    width: 200
+    height: 100

@@ -10,7 +10,7 @@ namespace Game.UI
     public class DialogueUI : MonoBehaviour
     {
         PlayerConversant playerConversant;
-        [SerializeField] TextMeshProUGUI AIText;
+        [SerializeField] TextMeshProUGUI speakerText;
 
         [SerializeField] Button button;
         [SerializeField] Sprite quitSprite;
@@ -78,14 +78,29 @@ namespace Game.UI
                     choiceInstance.GetComponentInChildren<TextMeshProUGUI>().text = choice.GetText();
                 }
             }
-            // Text UI is displayed
+            // Text UI is displayed for player
+            else if (playerConversant.HasSingleChoice())
+            {
+                // Set player sprite & name
+                speakerImage.sprite = playerSprite;
+                speakerName.text = "Player";
+
+                speakerText.text = playerConversant.GetText();
+
+                // Change look of button when at end of dialogue
+                if (!playerConversant.HasNext())
+                {
+                    button.transform.GetChild(0).GetComponent<Image>().sprite = quitSprite;
+                }
+            }
+            // Text UI is displayed for AI
             else
             {
                 // Set AI sprite & name
                 speakerImage.sprite = AISprite;
                 speakerName.text = "Wizard";
 
-                AIText.text = playerConversant.GetText();
+                speakerText.text = playerConversant.GetText();
 
                 // Change look of button when at end of dialogue
                 if (!playerConversant.HasNext())
