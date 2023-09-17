@@ -52,6 +52,8 @@ namespace Game.UI
 
         void UpdateUI()
         {
+            if (!playerConversant.IsActive()) return;
+
             // Activate text UI or choice UI
             textResponse.SetActive(!playerConversant.IsChoosing());
             choiceRoot.gameObject.SetActive(playerConversant.IsChoosing());

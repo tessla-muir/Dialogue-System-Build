@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game.UI;
 using UnityEngine;
 
 namespace Game.Dialogue
 {
     public class PlayerConversant : MonoBehaviour
     {
-        [SerializeField] Dialogue currentDialogue;
+        [SerializeField] GameObject DialogueUI;
+        Dialogue currentDialogue;
         DialogueNode currentNode = null;
         bool isChoosing = false;
         bool hasSingleChoice = false;
 
-        private void Awake() 
+        public void StartDialogue(Dialogue newDialogue)
         {
+            DialogueUI.SetActive(true);
+            currentDialogue = newDialogue;
             currentNode = currentDialogue.GetRootNode();    
         }
 
@@ -35,6 +39,11 @@ namespace Game.Dialogue
             }
 
             return currentNode.GetText();
+        }
+
+        public bool IsActive()
+        {
+            return currentDialogue != null;
         }
 
         public IEnumerable<DialogueNode> GetChoices()
