@@ -62,28 +62,8 @@ namespace Game.UI
                 // Set player sprite & name
                 speakerImage.sprite = playerSprite;
                 speakerName.text = "Player";
-
-                // Empty out choices
-                // Possible performance delay - could keep track of choices and update accordingly instead
-                foreach (Transform choice in choiceRoot)
-                {
-                    Destroy(choice.gameObject);
-                }
-
-                // Fill out choices
-                foreach (DialogueNode choice in playerConversant.GetChoices())
-                {
-                    // Create choice button and set text
-                    GameObject choiceInstance = Instantiate(choicePrefab, choiceRoot);
-                    choiceInstance.GetComponentInChildren<TextMeshProUGUI>().text = choice.GetText();
-
-                    Button button = choiceInstance.GetComponentInChildren<Button>();
-                    button.onClick.AddListener(() =>
-                    {
-                        playerConversant.SelectChoice(choice);
-                        UpdateUI();
-                    });
-                }
+                
+                BuildChoiceList();
             }
             // Text UI is displayed for player
             else if (playerConversant.HasSingleChoice())
@@ -92,13 +72,7 @@ namespace Game.UI
                 speakerImage.sprite = playerSprite;
                 speakerName.text = "Player";
 
-                speakerText.text = playerConversant.GetText();
-
-                // Change look of button when at end of dialogue
-                if (!playerConversant.HasNext())
-                {
-                    button.transform.GetChild(0).GetComponent<Image>().sprite = quitSprite;
-                }
+                BuildTextResponse();
             }
             // Text UI is displayed for AI
             else
@@ -107,13 +81,43 @@ namespace Game.UI
                 speakerImage.sprite = AISprite;
                 speakerName.text = "Wizard";
 
-                speakerText.text = playerConversant.GetText();
+                BuildTextResponse();
+            }
+        }
 
-                // Change look of button when at end of dialogue
-                if (!playerConversant.HasNext())
+        private void BuildTextResponse()
+        {
+            speakerText.text = playerConversant.GetText();
+
+            // Change look of button when at end of dialogue
+            if (!playerConversant.HasNext())
+            {
+                button.transform.GetChild(0).GetComponent<Image>().sprite = quitSprite;
+            }
+        }
+
+        private void BuildChoiceList()
+        {
+            // Empty out choices
+            // Possible performance delay - could keep track of choices and update accordingly instead
+            foreach (Transform choice in choiceRoot)
+            {
+                Destroy(choice.gameObject);
+            }
+
+            // Fill out choices
+            foreach (DialogueNode choice in playerConversant.GetChoices())
+            {
+                // Create choice button and set text
+                GameObject choiceInstance = Instantiate(choicePrefab, choiceRoot);
+                choiceInstance.GetComponentInChildren<TextMeshProUGUI>().text = choice.GetText();
+
+                Button button = choiceInstance.GetComponentInChildren<Button>();
+                button.onClick.AddListener(() =>
                 {
-                    button.transform.GetChild(0).GetComponent<Image>().sprite = quitSprite;
-                }
+                    playerConversant.SelectChoice(choice);
+                    UpdateUI();
+                });
             }
         }
     }
