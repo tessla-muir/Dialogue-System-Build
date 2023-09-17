@@ -44,8 +44,9 @@ namespace Game.UI
             }
             else
             {
-                // Exit Dialogue UI by deactivating it
-                GameObject.FindObjectOfType<DialogueUI>().gameObject.SetActive(false);
+                // Exit Dialogue
+                playerConversant.SetCurrentDialogue(null);
+                gameObject.SetActive(false);
             }
         }
 

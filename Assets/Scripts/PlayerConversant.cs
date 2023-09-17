@@ -104,5 +104,10 @@ namespace Game.Dialogue
             }
             return false;
         }
+
+        public void SetCurrentDialogue(Dialogue newDialogue)
+        {
+            currentDialogue = newDialogue;
+        }
     }
 }
