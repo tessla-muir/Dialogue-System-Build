@@ -24,14 +24,15 @@ namespace Game.UI
         [SerializeField] Sprite playerSprite;
         [SerializeField] Sprite AISprite;
 
-
         void Start()
         {
             playerConversant = GameObject.Find("Player").GetComponent<PlayerConversant>();
+            playerConversant.onConversationUpdated += UpdateUI;
             button.onClick.AddListener(Next);
 
-            // Initialize the UI
+            // Initialize the UI and inactivate it
             UpdateUI();
+            gameObject.SetActive(false);
         }
 
         // Continues dialogue, updating UI
@@ -46,8 +47,6 @@ namespace Game.UI
                 // Exit Dialogue UI by deactivating it
                 GameObject.FindObjectOfType<DialogueUI>().gameObject.SetActive(false);
             }
-
-            UpdateUI();
         }
 
         void UpdateUI()
@@ -118,7 +117,6 @@ namespace Game.UI
                 button.onClick.AddListener(() =>
                 {
                     playerConversant.SelectChoice(choice);
-                    UpdateUI();
                 });
             }
         }

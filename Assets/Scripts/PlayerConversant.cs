@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,20 @@ namespace Game.Dialogue
         bool isChoosing = false;
         bool hasSingleChoice = false;
 
+        public event Action onConversationUpdated;
+
+        void Awake()
+        {
+            // Activate the UI for setup
+            DialogueUI.SetActive(true);
+        }
+
         public void StartDialogue(Dialogue newDialogue)
         {
             DialogueUI.SetActive(true);
             currentDialogue = newDialogue;
             currentNode = currentDialogue.GetRootNode();    
+            onConversationUpdated();
         }
 
         public bool IsChoosing()
@@ -69,17 +79,20 @@ namespace Game.Dialogue
             {
                 hasSingleChoice = true;
                 currentNode = childNodes[0];
+                onConversationUpdated();
                 return;
             }
             else if (currentDialogue.GetPlayerChildren(currentNode).Count() > 0)
             {
                 hasSingleChoice = false; // Only needed for two consecutive choice lists
                 isChoosing = true;
+                onConversationUpdated();
                 return;
             }
 
             hasSingleChoice = false;
             currentNode = childNodes[0];
+            onConversationUpdated();
         }
 
         // Returns true if the dialogue continues after this node (thus has a child node)
