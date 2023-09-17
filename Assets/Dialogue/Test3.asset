@@ -24,6 +24,48 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
+--- !u!114 &-4226824790008030965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: ec383a18-6476-4537-8383-202e7f8443e5
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Why, thank you! I try my best to maintain it every day.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 727
+    y: 285
+    width: 200
+    height: 100
+--- !u!114 &-1677934518832093596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: becf6ab6-1fe0-4e40-9f3e-b5630894b156
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: What? You don't know where you are??
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 721
+    y: 398
+    width: 200
+    height: 100
 --- !u!114 &-304809695340632544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,7 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
   text: Ask where the hell you are.
-  children: []
+  children:
+  - becf6ab6-1fe0-4e40-9f3e-b5630894b156
   rect:
     serializedVersion: 2
     x: 511
@@ -63,6 +106,9 @@ MonoBehaviour:
   - {fileID: 5715527752411179602}
   - {fileID: 2544520503064037516}
   - {fileID: -304809695340632544}
+  - {fileID: -4226824790008030965}
+  - {fileID: 3211114015533793847}
+  - {fileID: -1677934518832093596}
 --- !u!114 &715952784754616865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,11 +145,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
   text: Compliment his beard.
-  children: []
+  children:
+  - ec383a18-6476-4537-8383-202e7f8443e5
   rect:
     serializedVersion: 2
     x: 527
     y: 285
+    width: 200
+    height: 100
+--- !u!114 &3211114015533793847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: becfe8ce-e285-44f2-bd75-5d68105f0bb2
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Oh yes. That's very interesting...
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 714
+    y: 164
     width: 200
     height: 100
 --- !u!114 &5715527752411179602
@@ -120,7 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
   text: Talk about the weather.
-  children: []
+  children:
+  - becfe8ce-e285-44f2-bd75-5d68105f0bb2
   rect:
     serializedVersion: 2
     x: 514

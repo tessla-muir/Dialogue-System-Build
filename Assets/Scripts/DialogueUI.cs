@@ -76,6 +76,13 @@ namespace Game.UI
                     // Create choice button and set text
                     GameObject choiceInstance = Instantiate(choicePrefab, choiceRoot);
                     choiceInstance.GetComponentInChildren<TextMeshProUGUI>().text = choice.GetText();
+
+                    Button button = choiceInstance.GetComponentInChildren<Button>();
+                    button.onClick.AddListener(() =>
+                    {
+                        playerConversant.SelectChoice(choice);
+                        UpdateUI();
+                    });
                 }
             }
             // Text UI is displayed for player

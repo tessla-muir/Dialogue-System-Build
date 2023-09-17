@@ -42,6 +42,15 @@ namespace Game.Dialogue
             return currentDialogue.GetPlayerChildren(currentNode);
         }
 
+        public void SelectChoice(DialogueNode chosenNode)
+        {
+            currentNode = chosenNode;
+            isChoosing = false;
+
+            // Skip to next node
+            Next();
+        }
+
         // Sets the current node to the first child node
         public void Next()
         {
@@ -55,10 +64,12 @@ namespace Game.Dialogue
             }
             else if (currentDialogue.GetPlayerChildren(currentNode).Count() > 0)
             {
+                hasSingleChoice = false; // Only needed for two consecutive choice lists
                 isChoosing = true;
                 return;
             }
 
+            hasSingleChoice = false;
             currentNode = childNodes[0];
         }
 
