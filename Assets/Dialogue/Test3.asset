@@ -24,6 +24,10 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
+  onEnterActions:
+  - Enter second node
+  onExitActions:
+  - Leave second node
 --- !u!114 &-4226824790008030965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,13 +42,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
   text: Why, thank you! I try my best to maintain it every day.
-  children: []
+  children:
+  - 7aedf361-6407-424f-bb62-19cfcff5e09c
   rect:
     serializedVersion: 2
     x: 727
     y: 285
     width: 200
     height: 100
+  onEnterActions:
+  - Man is happy.
+  onExitActions:
+  - End.
 --- !u!114 &-1677934518832093596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +75,9 @@ MonoBehaviour:
     y: 398
     width: 200
     height: 100
+  onEnterActions:
+  - Man is shocked!
+  onExitActions: []
 --- !u!114 &-304809695340632544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +100,8 @@ MonoBehaviour:
     y: 399
     width: 200
     height: 100
+  onEnterActions: []
+  onExitActions: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +123,7 @@ MonoBehaviour:
   - {fileID: -4226824790008030965}
   - {fileID: 3211114015533793847}
   - {fileID: -1677934518832093596}
+  - {fileID: 7833734967061891362}
 --- !u!114 &715952784754616865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +146,10 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
+  onEnterActions:
+  - Root node start
+  onExitActions:
+  - Root node leave
 --- !u!114 &2544520503064037516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +172,10 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
+  onEnterActions:
+  - Entering choices
+  onExitActions:
+  - Choice selected
 --- !u!114 &3211114015533793847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +197,9 @@ MonoBehaviour:
     y: 164
     width: 200
     height: 100
+  onEnterActions:
+  - Man is bored...
+  onExitActions: []
 --- !u!114 &5715527752411179602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,3 +222,28 @@ MonoBehaviour:
     y: 164
     width: 200
     height: 100
+  onEnterActions: []
+  onExitActions: []
+--- !u!114 &7833734967061891362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 7aedf361-6407-424f-bb62-19cfcff5e09c
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Of course!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 927
+    y: 285
+    width: 200
+    height: 100
+  onEnterActions: []
+  onExitActions: []

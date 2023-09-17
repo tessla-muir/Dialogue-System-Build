@@ -28,6 +28,17 @@ namespace Game.Dialogue
             DialogueUI.SetActive(true);
             currentDialogue = newDialogue;
             currentNode = currentDialogue.GetRootNode();    
+            TriggerEnterActions();
+            onConversationUpdated();
+        }
+
+        public void Quit()
+        {
+            currentDialogue = null;
+            TriggerExitActions();
+            currentNode = null;
+            isChoosing = false;
+            hasSingleChoice = false;
             onConversationUpdated();
         }
 
@@ -64,6 +75,7 @@ namespace Game.Dialogue
         public void SelectChoice(DialogueNode chosenNode)
         {
             currentNode = chosenNode;
+            TriggerEnterActions();
             isChoosing = false;
 
             // Skip to next node
@@ -75,23 +87,34 @@ namespace Game.Dialogue
         {
             DialogueNode[] childNodes = currentDialogue.GetAllChildren(currentNode).ToArray();
 
+            // Player text
             if (currentDialogue.GetPlayerChildren(currentNode).Count() == 1)
             {
                 hasSingleChoice = true;
-                currentNode = childNodes[0];
-                onConversationUpdated();
+                NextText(childNodes);
                 return;
             }
+            // Player choices
             else if (currentDialogue.GetPlayerChildren(currentNode).Count() > 0)
             {
                 hasSingleChoice = false; // Only needed for two consecutive choice lists
+                TriggerExitActions();
                 isChoosing = true;
                 onConversationUpdated();
                 return;
             }
 
+            // AI text
             hasSingleChoice = false;
+            NextText(childNodes);
+        }
+
+        // Triggers actions and moves to next dialogue node
+        private void NextText(DialogueNode[] childNodes)
+        {
+            TriggerExitActions();
             currentNode = childNodes[0];
+            TriggerEnterActions();
             onConversationUpdated();
         }
 
@@ -105,9 +128,26 @@ namespace Game.Dialogue
             return false;
         }
 
-        public void SetCurrentDialogue(Dialogue newDialogue)
+        private void TriggerEnterActions()
         {
-            currentDialogue = newDialogue;
+            if (currentNode != null && currentNode.GetOnEnterActions().Count() > 0)
+            {
+                foreach (string action in currentNode.GetOnEnterActions())
+                {
+                    Debug.Log(action);
+                }
+            }
+        }
+
+        private void TriggerExitActions()
+        {
+            if (currentNode != null && currentNode.GetOnExitActions().Count() > 0)
+            {
+                foreach (string action in currentNode.GetOnExitActions())
+                {
+                    Debug.Log(action);
+                }
+            }
         }
     }
 }

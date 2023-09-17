@@ -45,7 +45,7 @@ namespace Game.UI
             else
             {
                 // Exit Dialogue
-                playerConversant.SetCurrentDialogue(null);
+                playerConversant.Quit();
                 gameObject.SetActive(false);
             }
         }
