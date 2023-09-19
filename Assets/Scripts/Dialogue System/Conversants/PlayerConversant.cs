@@ -162,6 +162,11 @@ namespace Game.Dialogue
             }
         }
 
+        public Dialogue GetCurrentDialogue()
+        {
+            return currentDialogue;
+        }
+
         public void SetMood(Emotion newMood)
         {
             playerMood = newMood;
