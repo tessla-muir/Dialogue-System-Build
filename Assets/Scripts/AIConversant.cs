@@ -21,6 +21,11 @@ namespace Game.Dialogue
             return conversantName;
         }
 
+        public void SetName(string newName)
+        {
+            conversantName = newName;
+        }
+
         public Sprite GetConversantSprite(int index)
         {
             return conversantSprites[index];

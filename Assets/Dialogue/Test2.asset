@@ -22,8 +22,8 @@ MonoBehaviour:
     y: 343
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &-3682047593155329425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,8 +45,8 @@ MonoBehaviour:
     y: 226
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &-1923688947950501577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 225
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +91,30 @@ MonoBehaviour:
   - {fileID: 444969957759119771}
   - {fileID: -3682047593155329425}
   - {fileID: 3015540267233011726}
+  - {fileID: 320969433657329469}
+--- !u!114 &320969433657329469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: ac21666a-c76c-49e8-956b-d5fdd62a3042
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: <i>The forest is quiet and empty.</i>
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 721
+    y: 105.99999
+    width: 200
+    height: 100
+  onEnterActions: 0100000003000000
+  onExitActions: 
 --- !u!114 &444969957759119771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,15 +129,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
   text: The dog pauses for a minute before dashing away.
-  children: []
+  children:
+  - ac21666a-c76c-49e8-956b-d5fdd62a3042
   rect:
     serializedVersion: 2
     x: 521
     y: 105.99999
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &479701970359444024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,8 +163,8 @@ MonoBehaviour:
     y: 225
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &3015540267233011726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,8 +186,8 @@ MonoBehaviour:
     y: 343
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &7116233392304520968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,5 +210,5 @@ MonoBehaviour:
     y: 105.99999
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 
+  onExitActions: 

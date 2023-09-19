@@ -30,7 +30,7 @@ namespace Game.Dialogue
             DialogueUI.SetActive(true);
             currentConversant = newConversant;
             currentDialogue = newDialogue;
-            currentNode = currentDialogue.GetRootNode();    
+            currentNode = currentDialogue.GetRootNode();
             TriggerEnterActions();
             onConversationUpdated();
         }
@@ -42,6 +42,7 @@ namespace Game.Dialogue
             currentNode = null;
             isChoosing = false;
             hasSingleChoice = false;
+            currentConversant = null;
             onConversationUpdated();
         }
 
@@ -158,23 +159,37 @@ namespace Game.Dialogue
 
         private void TriggerEnterActions()
         {
-            if (currentNode != null && currentNode.GetOnEnterActions().Count() > 0)
+            if (currentNode != null)
             {
-                foreach (string action in currentNode.GetOnEnterActions())
+                foreach (DialogueAction action in currentNode.GetOnEnterActions())
                 {
-                    Debug.Log(action);
+                    TriggerAction(action);
                 }
             }
         }
 
         private void TriggerExitActions()
         {
-            if (currentNode != null && currentNode.GetOnExitActions().Count() > 0)
+            if (currentNode != null)
             {
-                foreach (string action in currentNode.GetOnExitActions())
+                foreach (DialogueAction action in currentNode.GetOnExitActions())
                 {
-                    Debug.Log(action);
+                    TriggerAction(action);
                 }
+            }
+        }
+
+        // Triggers the response to a given dialogue action
+        private void TriggerAction(DialogueAction action)
+        {
+            // Gets list of actions for dialogue triggers from current AI Conversant
+            DialogueTrigger dialogueTrigger = currentConversant.GetComponent<DialogueTrigger>();
+
+            if (action == DialogueAction.None) return;
+
+            foreach (var trigger in dialogueTrigger.Triggers)
+            {
+                trigger.TriggerAction(action);
             }
         }
     }

@@ -12,10 +12,9 @@ namespace Game.Dialogue
         [SerializeField] List<string> children = new List<string>();
         [SerializeField] Rect rect = new Rect(20, 20, 200, 100);
 
-        // Actions - string based for easy testing
-        // Hoping to expand to enums for specific actions later
-        [SerializeField] List<string> onEnterActions = new List<string>();
-        [SerializeField] List<string> onExitActions = new List<string>();
+        // Actions
+        [SerializeField] List<DialogueAction> onEnterActions = new List<DialogueAction>();
+        [SerializeField] List<DialogueAction> onExitActions = new List<DialogueAction>();
 
         public Rect GetRect()
         {
@@ -37,12 +36,12 @@ namespace Game.Dialogue
             return isPlayerSpeaking;
         }
 
-        public List<string> GetOnEnterActions()
+        public List<DialogueAction> GetOnEnterActions()
         {
             return onEnterActions;
         }
 
-        public List<string> GetOnExitActions()
+        public List<DialogueAction> GetOnExitActions()
         {
             return onExitActions;
         }
