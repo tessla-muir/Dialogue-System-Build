@@ -1,17 +1,19 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Game.UI;
 using UnityEngine;
 
 namespace Game.Dialogue
 {
     public class PlayerConversant : MonoBehaviour
     {
+        [SerializeField] string playerName;
+        [SerializeField] Sprite[] playerSprites;
+
         [SerializeField] GameObject DialogueUI;
         Dialogue currentDialogue;
         DialogueNode currentNode = null;
+        AIConversant currentConversant = null;
         bool isChoosing = false;
         bool hasSingleChoice = false;
 
@@ -23,9 +25,10 @@ namespace Game.Dialogue
             DialogueUI.SetActive(true);
         }
 
-        public void StartDialogue(Dialogue newDialogue)
+        public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
         {
             DialogueUI.SetActive(true);
+            currentConversant = newConversant;
             currentDialogue = newDialogue;
             currentNode = currentDialogue.GetRootNode();    
             TriggerEnterActions();
@@ -126,6 +129,19 @@ namespace Game.Dialogue
                 return true;
             }
             return false;
+        }
+
+        // Returns name of conversant for current node
+        public string GetConversantName()
+        {
+            if (isChoosing || hasSingleChoice)
+            {
+                return playerName;
+            }
+            else
+            {
+                return currentConversant.GetName();
+            }
         }
 
         private void TriggerEnterActions()
