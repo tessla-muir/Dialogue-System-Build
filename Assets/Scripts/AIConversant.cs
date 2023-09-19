@@ -10,6 +10,7 @@ namespace Game.Dialogue
         [SerializeField] Dialogue dialogue = null;
         [SerializeField] string conversantName = "";
         [SerializeField] Sprite[] conversantSprites;
+        private Emotion conversantMood = Emotion.Neutral;
 
         void Start()
         {
@@ -26,9 +27,19 @@ namespace Game.Dialogue
             conversantName = newName;
         }
 
-        public Sprite GetConversantSprite(int index)
+        public void SetMood(Emotion newMood)
         {
-            return conversantSprites[index];
+            conversantMood = newMood; 
+        }
+
+        public void SetMood(int val)
+        {
+            conversantMood = (Emotion) val;
+        }
+
+        public Sprite GetConversantSprite()
+        {
+            return conversantSprites[(int) conversantMood];
         }
 
         public void StartDialogue()

@@ -24,10 +24,8 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
-  onEnterActions:
-  - Enter second node
-  onExitActions:
-  - Leave second node
+  onEnterActions: 00000000
+  onExitActions: 00000000
 --- !u!114 &-4226824790008030965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,9 +48,8 @@ MonoBehaviour:
     y: 284
     width: 200
     height: 100
-  onEnterActions:
-  - UpdateSprite(Happy)
-  onExitActions: []
+  onEnterActions: 00000000
+  onExitActions: 
 --- !u!114 &-1677934518832093596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,9 +71,8 @@ MonoBehaviour:
     y: 398
     width: 200
     height: 100
-  onEnterActions:
-  - Man is shocked!
-  onExitActions: []
+  onEnterActions: 00000000
+  onExitActions: 
 --- !u!114 &-304809695340632544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,8 +95,8 @@ MonoBehaviour:
     y: 399
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,10 +141,8 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
-  onEnterActions:
-  - Root node start
-  onExitActions:
-  - Root node leave
+  onEnterActions: 00000000
+  onExitActions: 00000000
 --- !u!114 &2544520503064037516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +165,8 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
-  onEnterActions:
-  - Entering choices
-  onExitActions:
-  - Choice selected
+  onEnterActions: 00000000
+  onExitActions: 00000000
 --- !u!114 &3211114015533793847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,9 +188,8 @@ MonoBehaviour:
     y: 164
     width: 200
     height: 100
-  onEnterActions:
-  - Man is bored...
-  onExitActions: []
+  onEnterActions: 00000000
+  onExitActions: 
 --- !u!114 &5715527752411179602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,8 +212,8 @@ MonoBehaviour:
     y: 164
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions: 00000000
+  onExitActions: 
 --- !u!114 &7833734967061891362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +235,5 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
-  onEnterActions:
-  - Start of last node.
-  onExitActions:
-  - End of last node.
+  onEnterActions: 00000000
+  onExitActions: 00000000

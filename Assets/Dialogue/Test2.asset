@@ -137,7 +137,7 @@ MonoBehaviour:
     y: 105.99999
     width: 200
     height: 100
-  onEnterActions: 
+  onEnterActions: 05000000
   onExitActions: 
 --- !u!114 &479701970359444024
 MonoBehaviour:

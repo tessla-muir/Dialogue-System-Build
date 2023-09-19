@@ -9,6 +9,7 @@ namespace Game.Dialogue
     {
         [SerializeField] string playerName;
         [SerializeField] Sprite[] playerSprites;
+        private Emotion playerMood = Emotion.Neutral;
 
         [SerializeField] GameObject DialogueUI;
         Dialogue currentDialogue;
@@ -145,16 +146,27 @@ namespace Game.Dialogue
             }
         }
 
+        // Returns sprite of conversant for current node
         public Sprite GetConversantSprite()
         {
             if (isChoosing || hasSingleChoice)
             {
-                return playerSprites[0];
+                return playerSprites[(int) playerMood];
             }
             else
             {
-                return currentConversant.GetConversantSprite(0);
+                return currentConversant.GetConversantSprite();
             }
+        }
+
+        public void SetMood(Emotion newMood)
+        {
+            playerMood = newMood;
+        }
+
+        public void SetMood(int val)
+        {
+            playerMood = (Emotion) val;
         }
 
         private void TriggerEnterActions()
