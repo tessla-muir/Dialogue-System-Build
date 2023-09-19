@@ -12,6 +12,8 @@ namespace Game.Dialogue
         NameReset,
         SpriteChange,
         SpriteReset,
+        MoodChange,
+        MoodReset,
         TextSizeChange,
         TextColorChange,
         TextReset,
