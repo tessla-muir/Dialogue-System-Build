@@ -21,6 +21,11 @@ namespace Game.Dialogue
             return conversantName;
         }
 
+        public Sprite GetConversantSprite(int index)
+        {
+            return conversantSprites[index];
+        }
+
         public void StartDialogue()
         {
             playerConversant.StartDialogue(this, dialogue);

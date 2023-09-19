@@ -70,21 +70,17 @@ namespace Game.UI
             // Text UI is displayed for player
             else if (playerConversant.HasSingleChoice())
             {
-                // Set player sprite & name
-                speakerImage.sprite = playerSprite;
-                speakerName.text = "Player";
-
                 BuildTextResponse();
             }
             // Text UI is displayed for AI
             else
             {
-                // Set AI sprite & name
-                speakerImage.sprite = AISprite;
-                speakerName.text = "Wizard";
-
                 BuildTextResponse();
             }
+
+            // Set sprite and name
+            speakerName.text = playerConversant.GetConversantName();
+            speakerImage.sprite = playerConversant.GetConversantSprite();
         }
 
         private void BuildTextResponse()

@@ -144,6 +144,18 @@ namespace Game.Dialogue
             }
         }
 
+        public Sprite GetConversantSprite()
+        {
+            if (isChoosing || hasSingleChoice)
+            {
+                return playerSprites[0];
+            }
+            else
+            {
+                return currentConversant.GetConversantSprite(0);
+            }
+        }
+
         private void TriggerEnterActions()
         {
             if (currentNode != null && currentNode.GetOnEnterActions().Count() > 0)
