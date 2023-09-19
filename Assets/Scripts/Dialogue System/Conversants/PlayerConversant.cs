@@ -26,6 +26,7 @@ namespace Game.Dialogue
             DialogueUI.SetActive(true);
         }
 
+        // Starts the given dialogue through the AIConversant
         public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
         {
             DialogueUI.SetActive(true);
@@ -36,6 +37,7 @@ namespace Game.Dialogue
             onConversationUpdated();
         }
 
+        // Stops dialogue, resetting values
         public void Quit()
         {
             currentDialogue = null;
@@ -77,6 +79,7 @@ namespace Game.Dialogue
             return currentDialogue.GetPlayerChildren(currentNode);
         }
 
+        // Update chosenNode to the current node and continue dialogue
         public void SelectChoice(DialogueNode chosenNode)
         {
             currentNode = chosenNode;
@@ -151,7 +154,7 @@ namespace Game.Dialogue
         {
             if (isChoosing || hasSingleChoice)
             {
-                return playerSprites[(int) playerMood];
+                return playerSprites[(int)playerMood];
             }
             else
             {
@@ -166,17 +169,14 @@ namespace Game.Dialogue
 
         public void SetMood(int val)
         {
-            playerMood = (Emotion) val;
+            playerMood = (Emotion)val;
         }
 
         private void TriggerEnterActions()
         {
             if (currentNode != null)
             {
-                foreach (DialogueAction action in currentNode.GetOnEnterActions())
-                {
-                    TriggerAction(action);
-                }
+               TriggerAction(currentNode.GetOnEnterActions());
             }
         }
 
@@ -184,24 +184,25 @@ namespace Game.Dialogue
         {
             if (currentNode != null)
             {
-                foreach (DialogueAction action in currentNode.GetOnExitActions())
-                {
-                    TriggerAction(action);
-                }
+               TriggerAction(currentNode.GetOnExitActions());
             }
         }
 
         // Triggers the response to a given dialogue action
-        private void TriggerAction(DialogueAction action)
+        private void TriggerAction(IEnumerable<DialogueAction> actions)
         {
             // Gets list of actions for dialogue triggers from current AI Conversant
+            // Could add a general list of dialogue triggers
             DialogueTrigger dialogueTrigger = currentConversant.GetComponent<DialogueTrigger>();
 
-            if (action == DialogueAction.None) return;
-
-            foreach (var trigger in dialogueTrigger.Triggers)
+            foreach (DialogueAction action in actions)
             {
-                trigger.TriggerAction(action);
+                if (action == DialogueAction.None) continue;
+
+                foreach (var trigger in dialogueTrigger.Triggers)
+                {
+                    trigger.TriggerAction(action);
+                }
             }
         }
     }
