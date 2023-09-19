@@ -13,6 +13,7 @@ namespace Game.UI
         [SerializeField] TextMeshProUGUI speakerText;
 
         [SerializeField] Button button;
+        [SerializeField] Sprite continueSprite;
         [SerializeField] Sprite quitSprite;
 
         [SerializeField] GameObject textResponse;
@@ -91,6 +92,10 @@ namespace Game.UI
             if (!playerConversant.HasNext())
             {
                 button.transform.GetChild(0).GetComponent<Image>().sprite = quitSprite;
+            }
+            else
+            {
+                button.transform.GetChild(0).GetComponent<Image>().sprite = continueSprite;
             }
         }
 
