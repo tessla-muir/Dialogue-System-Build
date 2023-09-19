@@ -47,13 +47,12 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 727
-    y: 285
+    y: 284
     width: 200
     height: 100
   onEnterActions:
-  - Man is happy.
-  onExitActions:
-  - End.
+  - UpdateSprite(Happy)
+  onExitActions: []
 --- !u!114 &-1677934518832093596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,5 +244,7 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - Start of last node.
+  onExitActions:
+  - End of last node.

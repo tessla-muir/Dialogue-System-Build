@@ -13,14 +13,40 @@ MonoBehaviour:
   m_Name: 45c102b8-8525-4800-b5bf-b1e3e5a07ae9
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: Not well at all.
+  text: Bring out a tasty snack.
+  children:
+  - 5a33c5e4-8264-4ec3-bbfe-f8dc5f908ff8
+  rect:
+    serializedVersion: 2
+    x: 295
+    y: 343
+    width: 200
+    height: 100
+  onEnterActions: []
+  onExitActions: []
+--- !u!114 &-3682047593155329425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: d5ef9670-d706-455c-a034-c57c4afdf62d
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: The dog looks over at you curiously.
   children: []
   rect:
     serializedVersion: 2
-    x: 300
-    y: 341
+    x: 538
+    y: 226
     width: 200
     height: 100
+  onEnterActions: []
+  onExitActions: []
 --- !u!114 &-1923688947950501577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,14 +60,17 @@ MonoBehaviour:
   m_Name: 4f5e1572-ae2a-4f33-b567-08a9ed458ce2
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: It's a day... I guess.
-  children: []
+  text: Sit and wait.
+  children:
+  - d5ef9670-d706-455c-a034-c57c4afdf62d
   rect:
     serializedVersion: 2
     x: 317
     y: 225
     width: 200
     height: 100
+  onEnterActions: []
+  onExitActions: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +88,32 @@ MonoBehaviour:
   - {fileID: 7116233392304520968}
   - {fileID: -1923688947950501577}
   - {fileID: -6931063341468728921}
+  - {fileID: 444969957759119771}
+  - {fileID: -3682047593155329425}
+  - {fileID: 3015540267233011726}
+--- !u!114 &444969957759119771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 094857ad-7d46-40e1-80b1-154a90fb08b0
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: The dog pauses for a minute before dashing away.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 521
+    y: 105.99999
+    width: 200
+    height: 100
+  onEnterActions: []
+  onExitActions: []
 --- !u!114 &479701970359444024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +127,7 @@ MonoBehaviour:
   m_Name: 63bc4919-f49d-420d-a4a2-d94a8b330350
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: How are you?
+  text: <i>You see a dog down by the river.</i>
   children:
   - 54c649a1-1a12-46ec-93f5-2fff67613d24
   - 4f5e1572-ae2a-4f33-b567-08a9ed458ce2
@@ -83,6 +138,31 @@ MonoBehaviour:
     y: 225
     width: 200
     height: 100
+  onEnterActions: []
+  onExitActions: []
+--- !u!114 &3015540267233011726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 5a33c5e4-8264-4ec3-bbfe-f8dc5f908ff8
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: The dog cocks its head at you and starts sniffing the air.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 515
+    y: 343
+    width: 200
+    height: 100
+  onEnterActions: []
+  onExitActions: []
 --- !u!114 &7116233392304520968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,11 +176,14 @@ MonoBehaviour:
   m_Name: 54c649a1-1a12-46ec-93f5-2fff67613d24
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: I'm doing great!
-  children: []
+  text: Call for it.
+  children:
+  - 094857ad-7d46-40e1-80b1-154a90fb08b0
   rect:
     serializedVersion: 2
     x: 295
     y: 105.99999
     width: 200
     height: 100
+  onEnterActions: []
+  onExitActions: []
