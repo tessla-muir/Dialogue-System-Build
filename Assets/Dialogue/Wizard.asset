@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e8aa8613d9cc2941911525b012ab638, type: 3}
-  m_Name: Test3
+  m_Name: Wizard
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 715952784754616865}
