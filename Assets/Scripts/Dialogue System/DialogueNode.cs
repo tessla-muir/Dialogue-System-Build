@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Game.Core;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +17,7 @@ namespace Game.Dialogue
         // Actions
         [SerializeField] List<DialogueAction> onEnterActions = new List<DialogueAction>();
         [SerializeField] List<DialogueAction> onExitActions = new List<DialogueAction>();
+        [SerializeField] Condition condition;
 
         public Rect GetRect()
         {
@@ -44,6 +47,15 @@ namespace Game.Dialogue
         public List<DialogueAction> GetOnExitActions()
         {
             return onExitActions;
+        }
+
+        public bool CheckCondition(IEnumerable<IPredicatEvaluator> evaluators)
+        {
+            if (evaluators.Count() == 0)
+            {
+                return true;
+            }
+            return condition.Check(evaluators);
         }
 
 #if UNITY_EDITOR

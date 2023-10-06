@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Game.Core;
 
 namespace Game.Dialogue
 {
@@ -76,7 +77,7 @@ namespace Game.Dialogue
 
         public IEnumerable<DialogueNode> GetChoices()
         {
-            return currentDialogue.GetPlayerChildren(currentNode);
+            return FilterOnCondition(currentDialogue.GetPlayerChildren(currentNode));
         }
 
         // Update chosenNode to the current node and continue dialogue
@@ -93,17 +94,17 @@ namespace Game.Dialogue
         // Sets the current node to the first child node
         public void Next()
         {
-            DialogueNode[] childNodes = currentDialogue.GetAllChildren(currentNode).ToArray();
+            DialogueNode[] childNodes = FilterOnCondition(currentDialogue.GetAllChildren(currentNode)).ToArray();
 
             // Player text
-            if (currentDialogue.GetPlayerChildren(currentNode).Count() == 1)
+            if (FilterOnCondition(currentDialogue.GetPlayerChildren(currentNode)).Count() == 1)
             {
                 hasSingleChoice = true;
                 NextText(childNodes);
                 return;
             }
             // Player choices
-            else if (currentDialogue.GetPlayerChildren(currentNode).Count() > 0)
+            else if (FilterOnCondition(currentDialogue.GetPlayerChildren(currentNode)).Count() > 0)
             {
                 hasSingleChoice = false; // Only needed for two consecutive choice lists
                 TriggerExitActions();
@@ -129,7 +130,7 @@ namespace Game.Dialogue
         // Returns true if the dialogue continues after this node (thus has a child node)
         public bool HasNext()
         {
-            if (currentDialogue.GetAllChildren(currentNode).Count() > 0)
+            if (FilterOnCondition(currentDialogue.GetAllChildren(currentNode)).Count() > 0)
             {
                 return true;
             }
@@ -175,6 +176,24 @@ namespace Game.Dialogue
         public void SetMood(int val)
         {
             playerMood = (Emotion)val;
+        }
+
+        // Filters a list of nodes based on the condition of the evaluators
+        private IEnumerable<DialogueNode> FilterOnCondition(IEnumerable<DialogueNode> inputNode)
+        {
+            foreach (var node in inputNode)
+            {
+                if (node.CheckCondition(GetEvaluators()))
+                {
+                    yield return node;
+                }
+            }
+        }
+
+        // Returns list of evaluators for the current node
+        private IEnumerable<IPredicatEvaluator> GetEvaluators()
+        {
+            return GetComponents<IPredicatEvaluator>();
         }
 
         private void TriggerEnterActions()

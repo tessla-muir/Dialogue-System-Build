@@ -7,6 +7,7 @@ namespace Game.Core
     [System.Serializable]
     public class Condition : MonoBehaviour
     {
+        // Ideally, these fields are converted to enums that are based on surrounding systems like quests & inventory
         [SerializeField] string predicate;
         [SerializeField] string[] parameters;
 
