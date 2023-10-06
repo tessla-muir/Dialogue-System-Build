@@ -4,6 +4,7 @@ using UnityEngine;
 using Game.Dialogue;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.PlayerLoop;
 
 namespace Game.UI
 {
@@ -48,6 +49,7 @@ namespace Game.UI
                 StopCoroutine(displayTextCoroutine);
                 speakerText.text = playerConversant.GetText();
                 textFullyDisplayed = true;
+                UpdateNextButton();
                 return;
             }
 
@@ -104,8 +106,13 @@ namespace Game.UI
             }
             displayTextCoroutine = StartCoroutine(DisplayText());
 
+            UpdateNextButton();
+        }
+
+        private void UpdateNextButton()
+        {
             // Change look of button when at end of dialogue
-            if (!playerConversant.HasNext())
+            if (!playerConversant.HasNext() && textFullyDisplayed)
             {
                 button.transform.GetChild(0).GetComponent<Image>().sprite = quitSprite;
             }
@@ -175,6 +182,7 @@ namespace Game.UI
             }
 
             textFullyDisplayed = true;
+            UpdateNextButton();
         }
     }
 }
