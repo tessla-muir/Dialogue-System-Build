@@ -18,8 +18,32 @@ MonoBehaviour:
   - 5a33c5e4-8264-4ec3-bbfe-f8dc5f908ff8
   rect:
     serializedVersion: 2
-    x: 295
-    y: 343
+    x: 302
+    y: 526
+    width: 200
+    height: 100
+  onEnterActions: 
+  onExitActions: 
+--- !u!114 &-6376577790314549336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: bbe50a6b-86dd-46fe-b5d0-078ebe59d578
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Wait longer.
+  children:
+  - 787e28cd-3901-428d-8cb0-fd1a45aa0d19
+  rect:
+    serializedVersion: 2
+    x: 779
+    y: 226
     width: 200
     height: 100
   onEnterActions: 
@@ -37,8 +61,10 @@ MonoBehaviour:
   m_Name: d5ef9670-d706-455c-a034-c57c4afdf62d
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: The dog looks over at you curiously.
-  children: []
+  text: <i>The dog looks over at you curiously.</i>
+  children:
+  - bbe50a6b-86dd-46fe-b5d0-078ebe59d578
+  - 1eb738b0-38db-409b-8315-825c6fbd78b4
   rect:
     serializedVersion: 2
     x: 538
@@ -47,6 +73,30 @@ MonoBehaviour:
     height: 100
   onEnterActions: 
   onExitActions: 
+--- !u!114 &-3673177471384165769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 787e28cd-3901-428d-8cb0-fd1a45aa0d19
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: <i>The dog walks toward you. He's close now. Starting at you.</i>
+  children:
+  - ecd94b47-da91-428e-bbaa-722927452a9b
+  rect:
+    serializedVersion: 2
+    x: 1024
+    y: 226
+    width: 200
+    height: 100
+  onEnterActions: 05000000
+  onExitActions: 06000000
 --- !u!114 &-1923688947950501577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +117,29 @@ MonoBehaviour:
     serializedVersion: 2
     x: 317
     y: 225
+    width: 200
+    height: 100
+  onEnterActions: 
+  onExitActions: 
+--- !u!114 &-11565267204610776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 9cb07bda-ba3c-4cc3-942d-81b9fb4f0c64
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: <i>The dog sniffs at you hand before licking it.</i>
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1424
+    y: 226
     width: 200
     height: 100
   onEnterActions: 
@@ -92,6 +165,12 @@ MonoBehaviour:
   - {fileID: -3682047593155329425}
   - {fileID: 3015540267233011726}
   - {fileID: 320969433657329469}
+  - {fileID: 1471757866799992847}
+  - {fileID: -6376577790314549336}
+  - {fileID: 1455522835602577697}
+  - {fileID: -3673177471384165769}
+  - {fileID: 6569344448921380650}
+  - {fileID: -11565267204610776}
 --- !u!114 &320969433657329469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,12 +184,12 @@ MonoBehaviour:
   m_Name: ac21666a-c76c-49e8-956b-d5fdd62a3042
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: <i>The forest is quiet and empty.</i>
+  text: The forest is quiet and empty.
   children: []
   rect:
     serializedVersion: 2
-    x: 721
-    y: 105.99999
+    x: 976.99994
+    y: 103.99999
     width: 200
     height: 100
   onEnterActions: 0100000003000000
@@ -128,13 +207,13 @@ MonoBehaviour:
   m_Name: 094857ad-7d46-40e1-80b1-154a90fb08b0
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: The dog pauses for a minute before dashing away.
+  text: <i>The dog pauses for a minute before dashing away.</i>
   children:
   - ac21666a-c76c-49e8-956b-d5fdd62a3042
   rect:
     serializedVersion: 2
-    x: 521
-    y: 105.99999
+    x: 745
+    y: 101.99999
     width: 200
     height: 100
   onEnterActions: 05000000
@@ -165,6 +244,54 @@ MonoBehaviour:
     height: 100
   onEnterActions: 
   onExitActions: 
+--- !u!114 &1455522835602577697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 1eb738b0-38db-409b-8315-825c6fbd78b4
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Look over at him.
+  children:
+  - 787e28cd-3901-428d-8cb0-fd1a45aa0d19
+  rect:
+    serializedVersion: 2
+    x: 784
+    y: 326
+    width: 200
+    height: 100
+  onEnterActions: 
+  onExitActions: 
+--- !u!114 &1471757866799992847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: 385e00d4-0e4c-4a72-88e7-c1b865290141
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Here, boy!
+  children:
+  - 094857ad-7d46-40e1-80b1-154a90fb08b0
+  rect:
+    serializedVersion: 2
+    x: 532
+    y: 101.99999
+    width: 200
+    height: 100
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &3015540267233011726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,12 +305,38 @@ MonoBehaviour:
   m_Name: 5a33c5e4-8264-4ec3-bbfe-f8dc5f908ff8
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: The dog cocks its head at you and starts sniffing the air.
-  children: []
+  text: <i>The dog cocks its head at you and starts sniffing the air.</i>
+  children:
+  - bbe50a6b-86dd-46fe-b5d0-078ebe59d578
+  - 1eb738b0-38db-409b-8315-825c6fbd78b4
   rect:
     serializedVersion: 2
-    x: 515
-    y: 343
+    x: 532
+    y: 529
+    width: 200
+    height: 100
+  onEnterActions: 
+  onExitActions: 
+--- !u!114 &6569344448921380650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: ecd94b47-da91-428e-bbaa-722927452a9b
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: <i>You slowly reach your hand out.</I>
+  children:
+  - 9cb07bda-ba3c-4cc3-942d-81b9fb4f0c64
+  rect:
+    serializedVersion: 2
+    x: 1224
+    y: 226
     width: 200
     height: 100
   onEnterActions: 
@@ -203,7 +356,7 @@ MonoBehaviour:
   isPlayerSpeaking: 1
   text: Call for it.
   children:
-  - 094857ad-7d46-40e1-80b1-154a90fb08b0
+  - 385e00d4-0e4c-4a72-88e7-c1b865290141
   rect:
     serializedVersion: 2
     x: 295

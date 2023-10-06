@@ -15,6 +15,7 @@ namespace Game.UI
 
         [SerializeField] Button button;
         [SerializeField] Sprite continueSprite;
+        [SerializeField] Sprite skipSprite;
         [SerializeField] Sprite quitSprite;
 
         [SerializeField] GameObject textResponse;
@@ -112,7 +113,11 @@ namespace Game.UI
         private void UpdateNextButton()
         {
             // Change look of button when at end of dialogue
-            if (!playerConversant.HasNext() && textFullyDisplayed)
+            if (!textFullyDisplayed)
+            {
+                button.transform.GetChild(0).GetComponent<Image>().sprite = skipSprite;
+            }
+            else if (!playerConversant.HasNext())
             {
                 button.transform.GetChild(0).GetComponent<Image>().sprite = quitSprite;
             }

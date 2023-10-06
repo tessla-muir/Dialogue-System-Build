@@ -11,6 +11,11 @@ namespace Game.Dialogue
         [SerializeField] List<DialogueNode> nodes = new List<DialogueNode>();
         Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
 
+        void Awake() 
+        {
+            OnValidate();
+        }
+
         private void OnValidate()
         {
             nodeLookup.Clear(); // Start with a clean state

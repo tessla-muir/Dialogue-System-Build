@@ -715,6 +715,10 @@ PrefabInstance:
       value: -514
       objectReference: {fileID: 0}
     - target: {fileID: 6005808760005905590, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
+      propertyPath: skipSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04fc4cdce6527e64c9475a837ada8904, type: 3}
+    - target: {fileID: 6005808760005905590, guid: 106fa8b15ba4fcd4abdbd16b518daab7, type: 3}
       propertyPath: continueSprite
       value: 
       objectReference: {fileID: 21300000, guid: 30c633687df579b49b9068044de1dc55, type: 3}
