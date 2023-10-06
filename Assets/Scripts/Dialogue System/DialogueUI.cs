@@ -25,6 +25,9 @@ namespace Game.UI
         [SerializeField] Sprite playerSprite;
         [SerializeField] Sprite AISprite;
 
+        private Coroutine displayTextCoroutine;
+        private bool textFullyDisplayed = false;
+
         void Start()
         {
             playerConversant = GameObject.Find("Player").GetComponent<PlayerConversant>();
@@ -39,6 +42,15 @@ namespace Game.UI
         // Continues dialogue, updating UI
         void Next()
         {
+            // Display whole text if user prompts to do so
+            if (!textFullyDisplayed)
+            {
+                StopCoroutine(displayTextCoroutine);
+                speakerText.text = playerConversant.GetText();
+                textFullyDisplayed = true;
+                return;
+            }
+
             if (playerConversant.HasNext())
             {
                 playerConversant.Next();
@@ -65,7 +77,7 @@ namespace Game.UI
                 // Set player sprite & name
                 speakerImage.sprite = playerSprite;
                 speakerName.text = "Player";
-                
+
                 BuildChoiceList();
             }
             // Text UI is displayed for player
@@ -86,7 +98,11 @@ namespace Game.UI
 
         private void BuildTextResponse()
         {
-            speakerText.text = playerConversant.GetText();
+            if (displayTextCoroutine != null)
+            {
+                StopCoroutine(displayTextCoroutine);
+            }
+            displayTextCoroutine = StartCoroutine(DisplayText());
 
             // Change look of button when at end of dialogue
             if (!playerConversant.HasNext())
@@ -121,6 +137,44 @@ namespace Game.UI
                     playerConversant.SelectChoice(choice);
                 });
             }
+        }
+
+        IEnumerator DisplayText()
+        {
+            textFullyDisplayed = false;
+            speakerText.text = "";
+
+            string text = playerConversant.GetText();
+
+            int textIndex = 0;
+            while (textIndex < text.Length)
+            {
+                if (text[textIndex] == '<')
+                {
+                    // Find closing >
+                    int closingIndex = text.IndexOf('>', textIndex);
+                    if (closingIndex == -1)
+                    {
+                        break;
+                    }
+
+                    // Instantly add text between tags
+                    speakerText.text += text.Substring(textIndex, closingIndex - textIndex + 1);
+
+                    // Advance past closing tag
+                    textIndex = closingIndex + 1;
+                }
+                else
+                {
+                    // Delay each character
+                    speakerText.text += text[textIndex];
+                    textIndex++;
+
+                    yield return new WaitForSeconds(0.05f);
+                }
+            }
+
+            textFullyDisplayed = true;
         }
     }
 }

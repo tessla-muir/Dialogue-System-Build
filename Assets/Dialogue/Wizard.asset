@@ -73,6 +73,29 @@ MonoBehaviour:
     height: 100
   onEnterActions: 00000000
   onExitActions: 
+--- !u!114 &-1477399968798371167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff003cb47907ff439cc723515408df4, type: 3}
+  m_Name: dda2eb09-4c23-4c9a-8db8-c67f7fea536e
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Consider improving your communication skills.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 914
+    y: 164
+    width: 200
+    height: 100
+  onEnterActions: 
+  onExitActions: 
 --- !u!114 &-304809695340632544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +142,7 @@ MonoBehaviour:
   - {fileID: 3211114015533793847}
   - {fileID: -1677934518832093596}
   - {fileID: 7833734967061891362}
+  - {fileID: -1477399968798371167}
 --- !u!114 &715952784754616865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +204,9 @@ MonoBehaviour:
   m_Name: becfe8ce-e285-44f2-bd75-5d68105f0bb2
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: Oh yes. That's very interesting...
-  children: []
+  text: Oh yes. Talking about the weather. That's <i>very</i> interesting...
+  children:
+  - dda2eb09-4c23-4c9a-8db8-c67f7fea536e
   rect:
     serializedVersion: 2
     x: 714
