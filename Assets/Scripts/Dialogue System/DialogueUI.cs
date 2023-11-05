@@ -36,6 +36,7 @@ namespace Game.UI
             playerConversant.onConversationUpdated += UpdateUI;
             button.onClick.AddListener(Next);
 
+
             // Initialize the UI and inactivate it
             UpdateUI();
             gameObject.SetActive(false);
@@ -54,7 +55,7 @@ namespace Game.UI
                 return;
             }
 
-            if (playerConversant.HasNext())
+            if (playerConversant.HasNext() && !playerConversant.IsChoosing())
             {
                 playerConversant.Next();
             }
