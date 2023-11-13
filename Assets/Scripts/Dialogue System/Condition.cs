@@ -5,25 +5,65 @@ using UnityEngine;
 namespace Game.Core
 {
     [System.Serializable]
-    public class Condition : MonoBehaviour
+    public class Condition
     {
-        // Ideally, these fields are converted to enums that are based on surrounding systems like quests & inventory
-        [SerializeField] string predicate;
-        [SerializeField] string[] parameters;
+        [SerializeField] Disjunction[] and;
 
         public bool Check(IEnumerable<IPredicatEvaluator> evaluators)
         {
-            foreach (var evaluator in evaluators)
+            foreach (var disjunction in and)
             {
-                bool? result = evaluator.Evaluate(predicate, parameters);
-                if (result == null)
+                // All need to be true in AND operations
+                if (!disjunction.Check(evaluators))
                 {
-                    continue;
+                    return false;
                 }
-
-                if (result == false) return false;
             }
             return true;
+        }
+
+
+        [System.Serializable]
+        class Disjunction
+        {
+            [SerializeField] Predicate[] or;
+
+            public bool Check(IEnumerable<IPredicatEvaluator> evaluators)
+            {
+                foreach (var predicate in or)
+                {
+                    // Only one needs to be true in OR operations
+                    if (predicate.Check(evaluators))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        [System.Serializable]
+        class Predicate
+        {
+            // Ideally, these fields are converted to enums that are based on surrounding systems like quests & inventory
+            [SerializeField] string predicate;
+            [SerializeField] string[] parameters;
+            [SerializeField] bool negate = false;
+
+            public bool Check(IEnumerable<IPredicatEvaluator> evaluators)
+            {
+                foreach (var evaluator in evaluators)
+                {
+                    bool? result = evaluator.Evaluate(predicate, parameters);
+                    if (result == null)
+                    {
+                        continue;
+                    }
+
+                    if (result == negate) return false;
+                }
+                return true;
+            }
         }
     }
 }
