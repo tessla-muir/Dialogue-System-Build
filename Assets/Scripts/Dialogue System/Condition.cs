@@ -9,7 +9,7 @@ namespace Game.Core
     {
         [SerializeField] Disjunction[] and;
 
-        public bool Check(IEnumerable<IPredicatEvaluator> evaluators)
+        public bool Check(IEnumerable<IPredicateEvaluator> evaluators)
         {
             foreach (var disjunction in and)
             {
@@ -28,7 +28,7 @@ namespace Game.Core
         {
             [SerializeField] Predicate[] or;
 
-            public bool Check(IEnumerable<IPredicatEvaluator> evaluators)
+            public bool Check(IEnumerable<IPredicateEvaluator> evaluators)
             {
                 foreach (var predicate in or)
                 {
@@ -50,7 +50,7 @@ namespace Game.Core
             [SerializeField] string[] parameters;
             [SerializeField] bool negate = false;
 
-            public bool Check(IEnumerable<IPredicatEvaluator> evaluators)
+            public bool Check(IEnumerable<IPredicateEvaluator> evaluators)
             {
                 foreach (var evaluator in evaluators)
                 {

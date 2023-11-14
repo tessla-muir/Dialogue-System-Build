@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Core
 {
-    public interface IPredicatEvaluator
+    public interface IPredicateEvaluator
     {
         bool? Evaluate(string predicate, string[] parameters);
     }

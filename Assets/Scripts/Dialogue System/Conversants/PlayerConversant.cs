@@ -191,9 +191,9 @@ namespace Game.Dialogue
         }
 
         // Returns list of evaluators for the current node
-        private IEnumerable<IPredicatEvaluator> GetEvaluators()
+        private IEnumerable<IPredicateEvaluator> GetEvaluators()
         {
-            return GetComponents<IPredicatEvaluator>();
+            return GetComponents<IPredicateEvaluator>();
         }
 
         private void TriggerEnterActions()

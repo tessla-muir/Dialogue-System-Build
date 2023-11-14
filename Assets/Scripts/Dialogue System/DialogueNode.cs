@@ -49,7 +49,7 @@ namespace Game.Dialogue
             return onExitActions;
         }
 
-        public bool CheckCondition(IEnumerable<IPredicatEvaluator> evaluators)
+        public bool CheckCondition(IEnumerable<IPredicateEvaluator> evaluators)
         {
             if (evaluators.Count() == 0)
             {
